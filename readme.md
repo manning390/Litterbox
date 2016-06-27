@@ -1,3 +1,13 @@
+# "Litterbox" TheColorless.net Dev App
+
+Litterbox is TheColorless.net project for migration to the laravel framework.
+
+TheColorless is discussion-centered web community, with elements of content discovery networks, traditional message boards and real-time social networks.
+
+The content, which ranges from discussions about Japanese animation, video games, programming, internet culture to writing and science discoveries, is in constant movement on the frontpage based on current popularity (trends of votes) and activity. The reputation system rewards those who contribute well and punishes those who disrupt the community.
+
+The site was founded by Gargron on March, 21st 2010. It has faced some changes since its initial creation. TheColorless has adapted to the times to become what you see now. Overall, we place a strong focus on our members and the community.
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
