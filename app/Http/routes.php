@@ -27,4 +27,4 @@ Route::get('register', 'Auth\AuthController@showRegistrationForm');
 // Route::post('password/reset', 'Auth\PasswordController@reset');
 
 // Root Pages
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
