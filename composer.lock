@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f9970cd39457a3bb5fbaf7d5bade1e53",
-    "content-hash": "8b1485987e7c5949da82435d403e52e8",
+    "hash": "c2fd33524676ea317e0965793f11c196",
+    "content-hash": "f399d0a041f65cedeac47b2c12374064",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -895,6 +895,51 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "rych/phpass",
+            "version": "v2.0.2-p1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rchouinard/phpass.git",
+                "reference": "728bb4a912402593efa0242acba47b07fca64b96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rchouinard/phpass/zipball/728bb4a912402593efa0242acba47b07fca64b96",
+                "reference": "728bb4a912402593efa0242acba47b07fca64b96",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.7"
+            },
+            "suggest": {
+                "ext-hash": "Enabling the hash extension allows you to combine the included hash adapters with HMAC for an extra layer of security."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Phpass": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan Chouinard",
+                    "email": "rchouinard@gmail.com",
+                    "homepage": "http://ryanchouinard.com"
+                }
+            ],
+            "description": "PHP Password Library: Easy, secure password management for PHP",
+            "homepage": "http://rchouinard.github.com/phpass",
+            "keywords": [
+                "cryptography",
+                "password"
+            ],
+            "time": "2012-04-25 00:15:13"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3157,7 +3202,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5.9"
+        "php": ">=7.0"
     },
     "platform-dev": []
 }

@@ -14,7 +14,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'Illuminate\Auth\Events\Failed' => [
-            'App\Listeners\LegacyPasswordUpgrader',
+            'App\Listeners\LegacyPasswordListener',
         ],
     ];
 

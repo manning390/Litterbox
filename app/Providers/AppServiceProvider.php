@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Application;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(\Illuminate\Contracts\Hashing\Hasher::class, function (Application $app) {
+            return $app['hash'];
+        });
     }
 }
