@@ -12,12 +12,12 @@
 */
 
 // Login Routes...
-Route::get('login', 'Auth\AuthController@showLoginForm');
+Route::get('login', 'Auth\AuthController@showLoginForm')->name('auth.login');
 Route::post('login', 'Auth\AuthController@login');
-Route::get('logout', 'Auth\AuthController@logout');
+Route::get('logout', 'Auth\AuthController@logout')->name('auth.logout');
 
 // // Registration Routes...
-Route::get('register', 'Auth\AuthController@showRegistrationForm');
+Route::get('register', 'Auth\AuthController@showRegistrationForm')->name('auth.register');
 // Route::get('register', 'Auth\AuthController@showRegistrationForm');
 // Route::post('register', 'Auth\AuthController@register');
 
