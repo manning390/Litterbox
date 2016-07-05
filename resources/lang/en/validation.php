@@ -80,6 +80,9 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
 
+    // laravel-password text
+    'dumbpwd'              => 'The password is too common baka! Use something else!',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
