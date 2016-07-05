@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{ isset($title)? $title . ' - ':'' }}The Colorless</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -47,27 +47,29 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('home') }}">Front page</a></li>
+                    @if($user)
+                        <li><a href="http://chat.thecolorless.net/#/channel/main">Chat</a></li>
+                    @endif
+                    <li><a href="{{ route('home') }}">Tags</a></li>
+                    <li><a href="{{-- route('guide') --}}">Guide</a></li>
+                    @if($user)
+                        <li><a href="{{ route('auth.logout') }}">Sign out</a></li>
+                    @else
+                        <li><a href="{{ route('auth.login') }}">Login</a></li>
+                        <li><a href="{{ route('auth.register') }}">Join</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
+                <p class="navbar-text navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        You are <strong>a guest</strong>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
+                        You are <strong><a href="{{-- route('users.profile', $user->name) --}}">{{ $user->name }}</a></strong> • <a href="{{-- route('users.settings') --}}">Settings</a>
                     @endif
-                </ul>
+                </p>
             </div>
         </div>
     </nav>
