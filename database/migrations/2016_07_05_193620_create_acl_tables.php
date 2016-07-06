@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateACLTables extends Migration
+class CreateAclTables extends Migration
 {
     /**
      * Run the migrations.
@@ -70,9 +70,9 @@ class CreateACLTables extends Migration
      */
     public function down()
     {
+        Schema::drop('role_user');
+        Schema::drop('permission_role');
         Schema::drop('permissions');
         Schema::drop('roles');
-        Schema::drop('permission_role');
-        Schema::drop('role_user');
     }
 }
