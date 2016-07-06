@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\SyntaxType;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -17,7 +18,7 @@ class CreateForumTables extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name', 100);
             $table->string('link')->nullable();
-            $table->enum('syntax', ['markdown', 'bbcode']);
+            $table->enum('syntax', SyntaxType::getKeys());
             $table->boolean('nsfw');
 
             $table->timestamp('locked_at')->nullable();
