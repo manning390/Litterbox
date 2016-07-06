@@ -12,7 +12,7 @@ abstract class Enum {
 
         $calledClass = get_called_class();
         if(!array_key_exists($calledClass, self::$constCacheArray)){
-            $reflection = new ReflectionClass(get_called_class());
+            $reflection = new \ReflectionClass(get_called_class());
             self::$constCacheArray[$calledClass] = $reflection->getConstants();
         }
         return self::$constCacheArray[$calledClass];
