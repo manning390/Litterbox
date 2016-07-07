@@ -35,6 +35,10 @@ class Thread extends Model
         return $this->hasOne(Poll::class);
     }
 
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
+
     public function like(User $user){
         return DB::table(self::$likes_table)->insert(['thread_id' => $this->id, 'user_id' => $user->id]);
     }
@@ -58,7 +62,7 @@ class Thread extends Model
 
     public function restore(){
         $this->update(['deleted_by' => NULL]);
-        return $this->baseRestore();
+        return $this->baseRestore(); // Not inherited, trait
     }
 
     public function getLikesAttribute(){
