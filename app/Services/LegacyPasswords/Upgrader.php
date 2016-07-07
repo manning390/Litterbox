@@ -27,7 +27,7 @@ abstract class Upgrader {
         return $user->password === $legacy;
     }
 
-    protected function upgrade(User $user, $plain){
+    protected function upgradeLegacyPassword(User $user, $plain){
         $password = $this->hasher->make($plain);
         $user->update(['password' => $password]);
     }
