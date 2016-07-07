@@ -4,11 +4,12 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class AppTestCase extends TestCase {
+class AppTest extends TestCase {
 
     public function test_footer_has_navigation()
     {
-        $this->see('Navigation')
+        $this->visit('/')
+            ->see('Navigation')
             ->see('About')
             ->see('FAQ')
             ->see('Privacy Policy')
@@ -20,13 +21,15 @@ class AppTestCase extends TestCase {
     }
 
     public function test_footer_has_social(){
-        $this->see('Twitter')
+        $this->visit('/')
+            ->see('Twitter')
             ->see('Facebook')
             ->see('Steam');
     }
 
     public function test_footer_has_dev_info(){
-        $this->see('We rock ❤');
+        $this->visit('/')
+            ->see('We rock ❤');
     }
 
 }
