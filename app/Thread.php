@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Enums\SyntaxType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,7 +11,7 @@ class Thread extends Model
     use Lockable;
     use SoftDeletes {
         restore as baseRestore;
-    };
+    }
 
     /**
      * The attributes that should be mutated to dates.

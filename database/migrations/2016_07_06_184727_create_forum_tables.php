@@ -18,7 +18,6 @@ class CreateForumTables extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name', 100);
             $table->string('link')->nullable();
-            $table->enum('syntax', SyntaxType::getKeys());
             $table->boolean('nsfw');
 
             $table->timestamp('locked_at')->nullable();
@@ -35,6 +34,7 @@ class CreateForumTables extends Migration
             $table->integer('parent_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned();
             $table->text('body');
+            $table->enum('syntax', SyntaxType::getKeys());
             $table->softDeletes();
             $table->integer('deleted_by')->unsigned()->nullable();
             $table->timestamps();

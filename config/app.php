@@ -155,7 +155,10 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Unicodeveloper\DumbPassword\DumbPasswordServiceProvider::class
+        Unicodeveloper\DumbPassword\DumbPasswordServiceProvider::class,
+        Golonka\BBCode\BBCodeParserServiceProvider::class,
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class
+
 
     ],
 
@@ -202,6 +205,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'BBCode' => Golonka\BBCode\Facades\BBCodeParser::class,
+        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class
+
 
     ],
 
