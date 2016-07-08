@@ -8,25 +8,6 @@ use App\Http\Requests;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,7 +17,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -47,7 +28,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        dd($post->thread, $post->thread());
+        return redirect()->route('thread.show', [$post->thread, '#'.$id]);
     }
 
     /**
@@ -58,7 +41,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $this->authorize($post);
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -70,7 +55,9 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $this->authorize($post);
+        dd($request);
     }
 
     /**
@@ -81,6 +68,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $this->authorize($post);
+        $post->delete();
+        return redirect()->route('thread.show', [$post->thread]);
     }
+
 }

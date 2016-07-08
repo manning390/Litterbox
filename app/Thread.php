@@ -35,6 +35,14 @@ class Thread extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function rootPosts(){
+        return $this->posts()->doesntHave('parent');
+    }
+
+    public function childPosts(){
+        return $this->posts()->has('parent');
+    }
+
     public function poll(){
         return $this->hasOne(Poll::class);
     }
@@ -43,31 +51,32 @@ class Thread extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function like(User $user = NULL){
-        $user = $user ?? Auth::user();
-        return DB::table(self::$likes_table)->insert(['thread_id' => $this->id, 'user_id' => $user->id]);
+    public function like(){
+        return DB::table(self::$likes_table)->insert(['thread_id' => $this->id, 'user_id' => Auth::user()->id]);
     }
 
-    public function unlike(User $user = NULL){
-        $user = $user ?? Auth::user();
-        return DB::table(self::$likes_table)->where('thread_id', $this->id)->where('user_id', $user->id)->delete();
+    public function unlike(){
+        return DB::table(self::$likes_table)->where('thread_id', $this->id)->where('user_id', Auth::user()->id)->delete();
     }
 
-    public function toggleLike(User $user = NULL){
-        $user = $user ?? Auth::user();
-        if(DB::table(self::$likes_table)->where('thread_id', $this->id)->where('user_id', $user->id)->count() > 0){
-            return $this->unlike($user);
+    public function toggleLike(){
+        if(DB::table(self::$likes_table)->where('thread_id', $this->id)->where('user_id', Auth::user()->id)->count() > 0){
+            return $this->unlike();
         }else{
-            return $this->like($user);
+            return $this->like();
         }
     }
 
     public function pin(){
-        return DB::table(self::$pin_table)->insert(['thread_id' => $this->id, 'user_id' => Auth::user()->id]);
+        return $this->update(['pinned_at'=>Carbon::now()]);
     }
 
     public function unpin(){
-        return DB::table(self::$pin_table)->delete(['thread_id' => $this->id]);
+        return $this->update(['pinned_at'=>NULL]);
+    }
+
+    public function togglePin(){
+        return $this->pinned ? $this->unpin() : $this->pin();
     }
 
     public function delete(){
@@ -82,6 +91,10 @@ class Thread extends Model
 
     public function getLikesAttribute(){
         return DB::table($likes_table)->where('thread_id', $this->id)->count();
+    }
+
+    public function getPinnedAttribute(){
+        return $this->pinned_at != NULL;
     }
 
 }

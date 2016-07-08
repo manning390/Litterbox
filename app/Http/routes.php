@@ -30,9 +30,14 @@ Route::get('register', 'Auth\AuthController@showRegistrationForm')->name('auth.r
 // Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 // Route::post('password/reset', 'Auth\PasswordController@reset');
 
-// ForumController
+// ForumControllers
 Route::resource('thread', 'ThreadController');
-Route::resource('post', 'PostController', ['except' => ['index', 'show']]);
+Route::get('thread/restore/{$id}', 'ThreadController@restore')->name('thread.restore');
+Route::get('thread/like/{$id}', 'ThreadController@like')->name('thread.like');
+Route::get('thread/pin/{$id}', 'ThreadController@pin')->name('thread.pin');
+Route::get('thread/lock/{$id}', 'ThreadController@lock')->name('thread.lock');
+Route::get('thread/block/{$id}', 'ThreadController@block')->name('thread.block');
+Route::resource('post', 'PostController', ['except' => ['index', 'create']]);
 
 // User Controller
 Route::get('users/{username}', 'UserController@show');

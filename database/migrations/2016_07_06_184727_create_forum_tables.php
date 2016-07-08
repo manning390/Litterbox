@@ -18,9 +18,10 @@ class CreateForumTables extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name', 100);
             $table->string('link')->nullable();
-            $table->boolean('nsfw');
+            $table->boolean('nsfw')->default(false);
 
             $table->timestamp('locked_at')->nullable();
+            $table->timestamp('pinned_at')->nullable();
             $table->timestamp('blocked_at')->nullable();
             $table->integer('blocked_by')->unsigned()->nullable();
             $table->softDeletes();
@@ -85,13 +86,6 @@ class CreateForumTables extends Migration
                 ->onDelete('cascade');
 
             $table->primary(['thread_id', 'user_id']);
-        });
-
-        Schema::create('thread_pins', function (Blueprint $table) {
-            $table->integer('thread_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->timestamps();
-            $table->primary('thread_id');
         });
 
         Schema::create('polls', function (Blueprint $table) {
