@@ -87,6 +87,13 @@ class CreateForumTables extends Migration
             $table->primary(['thread_id', 'user_id']);
         });
 
+        Schema::create('thread_pins', function (Blueprint $table) {
+            $table->integer('thread_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->timestamps();
+            $table->primary('thread_id');
+        });
+
         Schema::create('polls', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();

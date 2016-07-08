@@ -43,20 +43,31 @@ class Thread extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function like(User $user){
+    public function like(User $user = NULL){
+        $user = $user ?? Auth::user();
         return DB::table(self::$likes_table)->insert(['thread_id' => $this->id, 'user_id' => $user->id]);
     }
 
-    public function unlike(User $user){
+    public function unlike(User $user = NULL){
+        $user = $user ?? Auth::user();
         return DB::table(self::$likes_table)->where('thread_id', $this->id)->where('user_id', $user->id)->delete();
     }
 
-    public function toggleLike(User $user){
+    public function toggleLike(User $user = NULL){
+        $user = $user ?? Auth::user();
         if(DB::table(self::$likes_table)->where('thread_id', $this->id)->where('user_id', $user->id)->count() > 0){
             return $this->unlike($user);
         }else{
             return $this->like($user);
         }
+    }
+
+    public function pin(){
+        return DB::table(self::$pin_table)->insert(['thread_id' => $this->id, 'user_id' => Auth::user()->id]);
+    }
+
+    public function unpin(){
+        return DB::table(self::$pin_table)->delete(['thread_id' => $this->id]);
     }
 
     public function delete(){
