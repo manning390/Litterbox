@@ -32,7 +32,7 @@ class Poll extends Model
     }
 
     public function results(){
-        return $this->answers()->pluck('answer')->zip($this->submissions()->pluck('total'))->all();
+        return $this->answers()->pluck('answer')->zip($this->submissions()->pluck('total'));
     }
 
     public function delete(){
