@@ -18,7 +18,7 @@ class Post extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['body', 'syntax'];
+    protected $fillable = ['body', 'syntax', 'user_id'];
 
     protected $formats = [
         SyntaxType::BBCode => 'formatBBCode',

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,6 +20,10 @@ class Thread extends Model
      * @var array
      */
     protected $dates = ['deleted_at', 'locked_at', 'blocked_at'];
+
+    protected $fillable = ['name', 'link', 'nsfw', 'user_id'];
+
+    protected $perPage = 20;
 
     private static $likes_table = 'thread_likes';
 
@@ -61,7 +66,7 @@ class Thread extends Model
 
     public function restore(){
         $this->update(['deleted_by' => NULL]);
-        return $this->baseRestore(); // Not inherited, trait
+        return $this->baseRestore();
     }
 
     public function getLikesAttribute(){

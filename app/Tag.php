@@ -18,7 +18,7 @@ class Tag extends Model
         return $this->belongsToMany(Thread::class);
     }
 
-    public function isDeleted(){
+    public function getDeletedAttribute(){
         return $this->deleted_at != NULL;
     }
 }
