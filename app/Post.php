@@ -20,25 +20,27 @@ class Post extends Model
 
     protected $fillable = ['body', 'syntax', 'user_id'];
 
+    protected $perPage = 20;
+
     protected $formats = [
         SyntaxType::BBCode => 'formatBBCode',
         SyntaxType::Markdown => 'formatMarkdown'
     ];
 
     public function user(){
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function thread(){
-        $this->belongsTo(Thread::class);
+        return $this->belongsTo(Thread::class);
     }
 
     public function parent(){
-        $this->belongsTo(Post::class, 'parent_id');
+        return $this->belongsTo(Post::class, 'parent_id');
     }
 
     public function children(){
-        $this->hasMany(Post::class, 'parent_id');
+        return $this->hasMany(Post::class, 'parent_id');
     }
 
     public function delete(){
@@ -61,6 +63,10 @@ class Post extends Model
 
     protected function formatMarkdown() :string{
         return Markdown::convertToHtml($this->body);
+    }
+
+    public function getIsChildAttribute(){
+        return $this->parent_id != NULL;
     }
 
 }
