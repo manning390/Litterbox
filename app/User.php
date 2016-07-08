@@ -35,4 +35,20 @@ class User extends Authenticatable
     public function owns($relation) {
         return $this->id === $relation->user_id;
     }
+
+    public function threads(){
+        return $this->hasMany(Thread::class);
+    }
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
+    public function polls(){
+        return $this->hasManyThrough(Poll::class, Thread::class);
+    }
+
+    public function tags(){
+        return $this->hasMany(Tag::class);
+    }
 }
