@@ -12,16 +12,7 @@
 */
 
 Route::get('test', function(){
-    // $thread = App\Thread::create([
-    //     'name' => 'Best Thread ever',
-    //     'nsfw' => true
-    // ]);
-    // $thread->posts()->create([
-    //     'body' => 'omg omg omg **awesome**',
-    //     'syntax' => 'm'
-    // ]);
-    $thread = App\Thread::find(2);
-    dd($thread, $thread->posts);
+    dd(App\Permission::all()->toArray());
 });
 
 // Login Routes...
