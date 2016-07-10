@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Thread;
+use App\Tag;
 use App\Posts;
+use App\Thread;
 use App\Http\Requests;
 use App\Enums\SyntaxType;
 
@@ -44,9 +45,13 @@ class ThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreThreadRequest $request)
     {
-        dd($request);
+        $thread = Thread::create($request);
+        $thread->tags()->saveMany(Tag::firstOrCreateMany($request->tags));
+        Auth::user()->threads()->save($thread);
+        Auth::user()->posts()->save($thread->posts()->first());
+        return redirect()->route('thread.show', [$thread]);
     }
 
     /**
@@ -81,10 +86,11 @@ class ThreadController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Thread $thread)
+    public function update(UpdateThreadRequest $request, Thread $thread)
     {
         $this->authorize($thread);
-        dd($request);
+        $thread->update($request);
+        return redirect()->route('thread.show', [$thread]);
     }
 
     /**

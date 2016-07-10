@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Post;
 use App\Http\Requests;
 
 class PostController extends Controller
@@ -20,9 +21,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        dd($request);
+        $post = Post::create($request);
+        Auth::user()->posts()->save($post);
+        return redirect()->route('thread.show', [$post]);
     }
 
     /**
@@ -33,8 +36,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        dd($post->thread, $post->thread());
-        return redirect()->route('thread.show', [$post->thread, '#'.$id]);
+        return redirect($post->permalink);
     }
 
     /**
@@ -56,10 +58,11 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
         $this->authorize($post);
-        dd($request);
+        $post->update($request);
+        return redirect()->route('post.show', [$post]);
     }
 
     /**

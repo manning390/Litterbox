@@ -29,7 +29,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'body', 'syntax', 'user_id'
+        'body', 'syntax', 'user_id', 'thread_id'
     ];
 
     /**
@@ -112,6 +112,17 @@ class Post extends Model
     }
 
     /**
+     * Returns the page number the Post is on
+     *
+     * @return int
+     */
+    public function getPage(int $perPage = NULL){
+        $perPage = $perPage ?? $this->perPage;
+        $postsBefore = $this->thread->posts()->where('id', '<', $this->id)->count();
+        return (int)($postsBefore / $perPage + 1);
+    }
+
+    /**
      * Converts the Post to Html from Markdown format
      *
      * @return string
@@ -129,4 +140,12 @@ class Post extends Model
         return $this->parent_id != NULL;
     }
 
+    /**
+     * Returns the permalink to the Post
+     *
+     * @return string
+     */
+    public function getPermalinkAttribute(){
+        return route('thread.show', [$post->thread, 'page'=>$post->getPage()]).'#'.$post->id;
+    }
 }

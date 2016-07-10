@@ -45,6 +45,29 @@ class Thread extends Model
     private static $likes_table = 'thread_likes';
 
     /**
+     * Save a new Thread with related models and return the instance.
+     *
+     * @param array $attributes
+     * @return static
+     */
+    public static function create(array $attributes = []){
+        return parent::create($attributes)
+            ->posts()->create($attributes);
+    }
+
+    /**
+     * Update the model in the database.
+     *
+     * @param array $attributes
+     * @param array $options
+     * @return bool|int
+     */
+    public function update(array $attributes = [], array $options = []){
+        return parent::update($attributes, $options) &&
+            $this->posts()->first()->update($attributes, $options);
+    }
+
+    /**
      * Many Threads are created by Users
      */
     public function user(){
