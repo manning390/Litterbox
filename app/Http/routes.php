@@ -12,7 +12,7 @@
 */
 
 Route::get('test', function(){
-    dd(App\Permission::all()->toArray());
+    return 'rawr';
 });
 
 // Login Routes...
@@ -20,23 +20,22 @@ Route::get('login', 'Auth\AuthController@showLoginForm')->name('auth.login');
 Route::post('login', 'Auth\AuthController@login');
 Route::get('logout', 'Auth\AuthController@logout')->name('auth.logout');
 
-// // Registration Routes...
+// Registration Routes...
 Route::get('register', 'Auth\AuthController@showRegistrationForm')->name('auth.register');
-// Route::get('register', 'Auth\AuthController@showRegistrationForm');
-// Route::post('register', 'Auth\AuthController@register');
+Route::post('register', 'Auth\AuthController@register');
 
-// // Password Reset Routes...
-// Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-// Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-// Route::post('password/reset', 'Auth\PasswordController@reset');
+// Password Reset Routes...
+Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+Route::post('password/reset', 'Auth\PasswordController@reset');
 
 // ForumControllers
 Route::resource('thread', 'ThreadController');
-Route::get('thread/restore/{$id}', 'ThreadController@restore')->name('thread.restore');
-Route::get('thread/like/{$id}', 'ThreadController@like')->name('thread.like');
-Route::get('thread/pin/{$id}', 'ThreadController@pin')->name('thread.pin');
-Route::get('thread/lock/{$id}', 'ThreadController@lock')->name('thread.lock');
-Route::get('thread/block/{$id}', 'ThreadController@block')->name('thread.block');
+Route::get('thread/restore/{thread}', 'ThreadController@restore')->name('thread.restore');
+Route::get('thread/like/{thread}', 'ThreadController@like')->name('thread.like');
+Route::get('thread/pin/{thread}', 'ThreadController@pin')->name('thread.pin');
+Route::get('thread/lock/{thread}', 'ThreadController@lock')->name('thread.lock');
+Route::get('thread/block/{thread}', 'ThreadController@block')->name('thread.block');
 Route::resource('post', 'PostController', ['except' => ['index', 'create']]);
 
 // User Controller

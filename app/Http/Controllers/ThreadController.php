@@ -11,6 +11,12 @@ use App\Enums\SyntaxType;
 
 class ThreadController extends Controller
 {
+
+    public function __construct(){
+        parent::__construct();
+        $this->middleware('auth', ['except' => ['index','show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,12 +52,11 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Thread $thread)
     {
-        $thread = Thread::findOrFail($id);
         $posts = $thread->rootPosts()->paginate();
         $syntaxes = collect(SyntaxType::getKeys())->flip();
         return view('thread.show', compact('thread', 'posts', 'syntaxes'));
@@ -60,12 +65,11 @@ class ThreadController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Thread $thread)
     {
-        $thread = Thread::findOrFail($id);
         $this->authorize($thread);
         return view('thread.edit', compact('thread'));
     }
@@ -74,12 +78,11 @@ class ThreadController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, Thread $thread)
     {
-        $thread = Thread::findOrFail($id);
         $this->authorize($thread);
         dd($request);
     }
@@ -87,12 +90,11 @@ class ThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Thread $thread)
     {
-        $thread = Thread::findOrFail($id);
         $this->authorize($thread);
         $thread->delete();
         return redirect()->route('home');
@@ -100,12 +102,11 @@ class ThreadController extends Controller
 
     /**
      * Restore the specified resource in storage.
-     * @param  int $id
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function restore($id)
+    public function restore(Thread $thread)
     {
-        $thread = Thread::findOrFail($id);
         $this->authorize($thread);
         $thread->restore();
         return redirect()->route('thread.show', [$thread]);
@@ -113,24 +114,22 @@ class ThreadController extends Controller
 
     /**
      * Toggle the current like state of the thread.
-     * @param  int $id
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function like($id)
+    public function like(Thread $thread)
     {
-        $thread = Thread::findOrFail($id);
         $thread->toggleLike();
         return redirect()->route('home');
     }
 
     /**
      * Toggle the current pin state of the thread.
-     * @param  int $id
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function pin($id)
+    public function pin(Thread $thread)
     {
-        $thread = Thread::findOrFail($id);
         $this->authorize($thread);
         $thread->togglePin();
         return redirect()->route('home');
@@ -138,12 +137,11 @@ class ThreadController extends Controller
 
     /**
      * Toggle the current lock state of the thread
-     * @param  pin $id
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function lock($id)
+    public function lock(Thread $thread)
     {
-        $thread = Thread::findOrFail($id);
         $this->authorize($thread);
         $thread->toggleLock();
         return redirect()->route('thread.show', [$thread]);
@@ -151,12 +149,11 @@ class ThreadController extends Controller
 
     /**
      * Toggle the current block state of the thread.
-     * @param  int $id
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function block($id)
+    public function block(Thread $thread)
     {
-        $thread = Thread::findOrFail($id);
         $this->authorize($thread);
         $this->toggleBlock();
         return redirect()->route('thread.show', [$thread]);

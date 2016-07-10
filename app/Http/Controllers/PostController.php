@@ -9,6 +9,11 @@ use App\Http\Requests;
 class PostController extends Controller
 {
 
+    public function __construct(){
+        parent::__construct();
+        $this->middleware('auth', ['except' => 'show']);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -23,12 +28,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::findOrFail($id);
         dd($post->thread, $post->thread());
         return redirect()->route('thread.show', [$post->thread, '#'.$id]);
     }
@@ -36,12 +40,11 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
         $this->authorize($post);
         return view('post.edit', compact('post'));
     }
@@ -50,12 +53,11 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::findOrFail($id);
         $this->authorize($post);
         dd($request);
     }
@@ -63,12 +65,11 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::findOrFail($id);
         $this->authorize($post);
         $post->delete();
         return redirect()->route('thread.show', [$post->thread]);
