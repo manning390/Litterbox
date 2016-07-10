@@ -37,4 +37,9 @@ abstract class Enum {
         $values = array_values(self::getConstants());
         return in_array($value, $values, $strict);
     }
+
+    public static function validate($attribute, $value, $parameters, $validator){
+        $class = 'App\\Enums\\'.$parameters[0];
+        return collect(call_user_func($class, 'getKeys'))->contains($value);
+    }
 }

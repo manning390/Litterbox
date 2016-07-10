@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Validator;
+use App\Enums\Enum;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
 
@@ -14,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('enum', 'Enum@validate');
     }
 
     /**
