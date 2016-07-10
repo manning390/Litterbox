@@ -10,7 +10,8 @@
         "rych/phpass": "2.*",
         "unicodeveloper/laravel-password": "1.0.*",
         "golonka/bbcodeparser": "^2.2",
-        "graham-campbell/markdown": "^6.0"
+        "graham-campbell/markdown": "^6.0",
+        "darrylkuhn/dialect": "1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
