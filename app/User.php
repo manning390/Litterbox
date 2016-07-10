@@ -91,4 +91,11 @@ class User extends Authenticatable
     public function tags(){
         return $this->hasMany(Tag::class);
     }
+
+    /**
+     * Many Users have many Badges
+     */
+    public function badges(){
+        $this->belongsToMany(Badges::class);
+    }
 }

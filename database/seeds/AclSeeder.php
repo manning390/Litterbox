@@ -13,6 +13,12 @@ class AclSeeder extends Seeder
      */
     public function run()
     {
+        // Truncate tables
+        DB::table('role_user')->truncate();
+        DB::table('permission_role')->truncate();
+        DB::table('permissions')->truncate();
+        DB::table('roles')->truncate();
+
         // Roles
         $mod = Role::create([
             'name'=>'mod',
@@ -59,6 +65,11 @@ class AclSeeder extends Seeder
             'name'=>'manage_profiles',
             'label'=>'Manage User Profiles'
         ]);
+        $manageBadges = Permission::create([
+            'name'=>'manage_badges',
+            'label'=>'Manage Badge'
+        ]);
+
 
         // Forum Bans
         $timeBan = Permission::create([
@@ -120,16 +131,19 @@ class AclSeeder extends Seeder
             $banChat,
             $manageFlags,
             $managePMs,
-            $manageProfiles
+            $manageProfiles,
+            $manageBadges
         ]);
         $ranger->permissions()->saveMany([
             $viewAdministration,
             $muteChat,
-            $banChat
+            $banChat,
+            $manageBadges
         ]);
         $dev->permissions()->saveMany([
             $viewAdministration,
-            $assumeUser
+            $assumeUser,
+            $manageBadges
         ]);
         $admin->permissions()->saveMany(Permission::all());
 
