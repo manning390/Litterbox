@@ -1,0 +1,34 @@
+Administration:
+ ☐ IP lists
+ ☐ Linked account names
+ ☐ Bans
+
+Forum Filters:
+ ☐ NSFW
+ ☐ Bumped @started
+ ☐ Popular @started
+
+Logging:
+ ☐ Log who upvotes @explain
+ ☐ Log Paypal donations
+
+Forum:
+ ✔ Being able to change between Markdown/BBcode before a post is submitted @done (16-07-09 22:25)
+ ☐ Youtube Embed
+ ☐ Twitter Embed
+
+Friend System:
+ ☐ Friend System
+
+Profiles:
+ ☐ Titles @explain
+ ☐ Profile links @explain
+ ☐ Daily Dice Roll @explain
+
+Reputation System:
+ ☐ Reputation Attribute
+ ☐ Ban removing rep
+ ☐ Ban without removing rep
+ ☐ Votes add rep (20% max) @explain
+ ☐ Posts add rep
+ ☐ Threads add rep (heavier than posts) @explain
