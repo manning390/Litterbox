@@ -48,9 +48,11 @@ class ThreadController extends Controller
     public function store(StoreThreadRequest $request)
     {
         $thread = Thread::create($request);
-        $thread->tags()->saveMany(Tag::firstOrCreateMany($request->tags));
+        $tags = Tag::firstOrCreateMany($request->tags);
+        $thread->tags()->saveMany($tags);
         Auth::user()->threads()->save($thread);
         Auth::user()->posts()->save($thread->posts()->first());
+        Auth::user()->tags()->saveMany(Tag::firstOrCreateMany($request->tags));
         return redirect()->route('thread.show', [$thread]);
     }
 
