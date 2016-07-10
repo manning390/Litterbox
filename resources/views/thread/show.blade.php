@@ -8,8 +8,6 @@
             @foreach($post->children as $child)
                 {!! $child->html !!}
             @endforeach
-        @else
-            No children
         @endif
     @endforeach
     {{ $posts->links() }}
