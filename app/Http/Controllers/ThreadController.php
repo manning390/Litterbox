@@ -8,6 +8,7 @@ use App\Tag;
 use App\Posts;
 use App\Thread;
 use App\Http\Requests;
+use App\Enums\PointType;
 use App\Enums\SyntaxType;
 
 class ThreadController extends Controller
@@ -47,12 +48,17 @@ class ThreadController extends Controller
      */
     public function store(StoreThreadRequest $request)
     {
+        $user = Auth::user();
+
+        // Create the thread w/ first post
         $thread = Thread::create($request);
+        $user->threads()->save($thread);
+        $user->posts()->save($thread->posts()->first());
+        $user->addPoints(PointType::Thread);
+        // Create or get all the tags
         $tags = Tag::firstOrCreateMany($request->tags);
         $thread->tags()->saveMany($tags);
-        Auth::user()->threads()->save($thread);
-        Auth::user()->posts()->save($thread->posts()->first());
-        Auth::user()->tags()->saveMany(Tag::firstOrCreateMany($request->tags));
+        $user->tags()->saveMany($tags);
         return redirect()->route('thread.show', [$thread]);
     }
 

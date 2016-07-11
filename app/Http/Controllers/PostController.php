@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Post;
 use App\Http\Requests;
+use App\Enums\PointType;
 
 class PostController extends Controller
 {
@@ -25,6 +26,7 @@ class PostController extends Controller
     {
         $post = Post::create($request);
         Auth::user()->posts()->save($post);
+        Auth::user()->addPoints(PointType::Post);
         return redirect()->route('thread.show', [$post]);
     }
 

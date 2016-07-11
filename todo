@@ -29,9 +29,9 @@ Profiles:
  ✔ Badges @done (16-07-10 00:37)
 
 Reputation System:
- ☐ Reputation Attribute
+ ☐ Reputation Attribute @started
  ☐ Ban removing rep
  ☐ Ban without removing rep
- ☐ Votes add rep (20% max) @explain
- ☐ Posts add rep
- ☐ Threads add rep (heavier than posts) @explain
+ ☐ Votes add rep (20% max) @explain @started
+ ☐ Posts add rep @started
+ ☐ Threads add rep (heavier than posts) @explain @started

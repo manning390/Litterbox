@@ -113,6 +113,7 @@ class Thread extends Model
      * A Thread can be liked by the Auth'd User
      */
     public function like(){
+        if(!Auth::user()->owns($thread)) Auth::user()->addPoints(PointType::Like);
         return DB::table(self::$likes_table)->insert(['thread_id' => $this->id, 'user_id' => Auth::user()->id]);
     }
 
@@ -120,6 +121,7 @@ class Thread extends Model
      * A Thread can be unliked by the Auth'd User
      */
     public function unlike(){
+        if(!Auth::user()->owns($thread)) Auth::user()->addPoints(-1 * PointType::Like);
         return DB::table(self::$likes_table)->where('thread_id', $this->id)->where('user_id', Auth::user()->id)->delete();
     }
 

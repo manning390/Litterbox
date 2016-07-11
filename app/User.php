@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\PointTypes;
 use Eloquent\Dialect\Json;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -97,5 +98,13 @@ class User extends Authenticatable
      */
     public function badges(){
         $this->belongsToMany(Badges::class);
+    }
+
+    /**
+     * Add Points using PointType
+     */
+    public function addPoints(PointType $points){
+        $this->points += $points;
+        return $this->save();
     }
 }
