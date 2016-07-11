@@ -114,6 +114,7 @@ class Post extends Model
     /**
      * Returns the page number the Post is on
      *
+     * @param int
      * @return int
      */
     public function getPage(int $perPage = NULL){
