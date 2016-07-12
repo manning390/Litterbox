@@ -14,14 +14,16 @@ class Tag extends Model
 
     use SoftDeletes;
 
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
-
     public function threads(){
         return $this->belongsToMany(Thread::class);
     }
 
+    /**
+     * Get multiple Tags by name or create them if they don't exist
+     *
+     * @param array|string
+     * @return Collection
+     */
     public static function firstOrCreateMany($tags){
         if(!is_array($tags)) $tags = explode(',', $tags);
 

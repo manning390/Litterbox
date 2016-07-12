@@ -58,7 +58,6 @@ class ThreadController extends Controller
         // Create or get all the tags
         $tags = Tag::firstOrCreateMany($request->tags);
         $thread->tags()->saveMany($tags);
-        $user->tags()->saveMany($tags);
         return redirect()->route('thread.show', [$thread]);
     }
 
