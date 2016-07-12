@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Event;
 use App\Tag;
 use App\Posts;
 use App\Thread;
 use App\Http\Requests;
-use App\Enums\PointType;
 use App\Enums\SyntaxType;
 
 class ThreadController extends Controller
@@ -48,16 +48,8 @@ class ThreadController extends Controller
      */
     public function store(StoreThreadRequest $request)
     {
-        $user = Auth::user();
-
-        // Create the thread w/ first post
-        $thread = Thread::create($request);
-        $user->threads()->save($thread);
-        $user->posts()->save($thread->posts()->first());
-        $user->addPoints(PointType::Thread);
-        // Create or get all the tags
-        $tags = Tag::firstOrCreateMany($request->tags);
-        $thread->tags()->saveMany($tags);
+        $thread = Thread::create($request)->associateUser(Auth::user());
+        $thread->tags()->saveMany(Tag::firstOrCreateMany($request->tags));
         return redirect()->route('thread.show', [$thread]);
     }
 
@@ -71,6 +63,7 @@ class ThreadController extends Controller
     {
         $posts = $thread->rootPosts()->paginate();
         $syntaxes = collect(SyntaxType::getKeys())->flip();
+        Event::fire('thread.view', $thread);
         return view('thread.show', compact('thread', 'posts', 'syntaxes'));
     }
 
@@ -171,4 +164,17 @@ class ThreadController extends Controller
         $this->toggleBlock();
         return redirect()->route('thread.show', [$thread]);
     }
+
+    /**
+     * Scope for getting threads ordered by last bumped
+     */
+    public function scopeBumped($query){
+        $query->select('threads.*')
+            ->join('posts', 'posts.thread_id', '=','threads.id')
+            ->orderBy('posts.created_at');
+    }
+
+
+
+
 }

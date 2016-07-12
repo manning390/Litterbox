@@ -19,6 +19,7 @@ class CreateForumTables extends Migration
             $table->string('name', 100);
             $table->string('link')->nullable();
             $table->boolean('nsfw')->default(false);
+            $table->integer('views')->unsigned()->default(0);
 
             $table->timestamp('locked_at')->nullable();
             $table->timestamp('pinned_at')->nullable();

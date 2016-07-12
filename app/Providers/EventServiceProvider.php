@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Auth\Events\Failed' => [
             'App\Listeners\LegacyPasswordListener',
         ],
+        'App\Events\ThreadViewedEvent' => [
+            'App\Listeners\ThreadViewedListener'
+        ]
     ];
 
     /**
