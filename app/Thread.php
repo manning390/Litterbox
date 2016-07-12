@@ -3,6 +3,7 @@
 namespace App;
 
 use Auth;
+use App\Enums\PointType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,7 +20,9 @@ class Thread extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'locked_at', 'blocked_at'];
+    protected $dates = [
+        'deleted_at', 'locked_at', 'blocked_at'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -109,6 +112,11 @@ class Thread extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function associateUser(User $user){
+        $user->addPoints(PointType::Thread);
+        return $this->associate($user) && $this->posts()->first()->associate($user);
+    }
+
     /**
      * A Thread can be liked by the Auth'd User
      */
@@ -191,4 +199,9 @@ class Thread extends Model
         return $this->pinned_at != NULL;
     }
 
+    public function getPopularityAttribute(){
+        // $likes = $this->likes == 0 ? 1 : $this->likes;
+        // return log($likes, self::$popularityDecayExponent) +  1 / self::$popularityDecayLifetime;
+        return 1;
+    }
 }

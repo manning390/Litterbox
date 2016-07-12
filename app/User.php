@@ -107,4 +107,11 @@ class User extends Authenticatable
         $this->points += $points;
         return $this->save();
     }
+
+    /**
+     * The percentile the User is
+     */
+    public function getPercentileAttribute(){
+        return (User::where('points', '<', $this->points) / User::where('points', '>', '0')->count()) * 100;
+    }
 }

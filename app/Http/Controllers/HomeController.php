@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Thread;
+use App\Post;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $bumped = Thread::bumped()->paginate();
+        $new = Thread::orderBy('created_at')->paginate();
+        return view('home', compact('bumped', 'new'));
     }
 }
