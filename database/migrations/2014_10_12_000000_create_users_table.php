@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->integer('points');
             $table->json('options');
+            $table->text('profile');
             $table->timestamp('login_at')->nullable();
             $table->timestamps();
         });

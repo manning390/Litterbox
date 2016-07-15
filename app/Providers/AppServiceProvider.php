@@ -17,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Validator::extend('enum', 'Enum@validate');
+        Validator::extend('hexcolor', function($attribute, $value, $parameters, $validator){
+            $pattern = '/^#?[a-fA-F0-9]{3,6}$/';
+            return (boolean) preg_match($pattern, $value);
+        });
     }
 
     /**
