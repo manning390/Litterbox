@@ -5,6 +5,7 @@ namespace App;
 use Auth;
 use BBCode;
 use Markdown;
+use App\Enums\PointType;
 use App\Enums\SyntaxType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -78,6 +79,27 @@ class Post extends Model
     }
 
     /**
+     * Save a new Post with default User syntax
+     *
+     * @param  array  $attributes
+     * @return static
+     */
+    public static function create(array $attributes = []){
+        $attributes['syntax'] = $attributes['syntax'] ?? Auth::user()->syntax;
+        return parent::create($attributes);
+    }
+
+    /**
+     * Sets the User of the Post
+     * @param  User   $user
+     * @return Post
+     */
+    public function associateUser(User $user){
+        $user->addPoints(PointType::Post);
+        return $this->associate($user);
+    }
+
+    /**
      * Override to update who deleted a Post
      */
     public function delete(){
@@ -148,5 +170,14 @@ class Post extends Model
      */
     public function getPermalinkAttribute(){
         return route('thread.show', [$post->thread, 'page'=>$post->getPage()]).'#'.$post->id;
+    }
+
+    /**
+     * Rewards User for helpful Post
+     *
+     * @return bool
+     */
+    public function thumbsUp(){
+        return !Auth::user()->owns($this)? $this->user()->addPoints(PointType::Thumbs) : false;
     }
 }

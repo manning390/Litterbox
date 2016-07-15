@@ -2,7 +2,8 @@
 
 namespace App;
 
-use App\Enums\PointTypes;
+use App\Enums\PointType;
+use App\Enums\SyntaxType;
 use Eloquent\Dialect\Json;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -43,9 +44,10 @@ class User extends Authenticatable
      */
     protected $jsonStructure = [
         'color' => '#222223',
+        'syntax' => SyntaxType::Markdown,
         'nsfw' => false,
-        'mentions' => true,
-        'pms' => true
+        'mentionsEmail' => true,
+        'pmsEmail' => true
     ];
 
     /**
@@ -109,7 +111,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Minus Points using PointType
+     */
+    public function minusPoints(PointType $points){
+        return $this->addPoints(-$points);
+    }
+
+    /**
      * The percentile the User is
+     *
+     * @return float
      */
     public function getPercentileAttribute(){
         return (User::where('points', '<', $this->points) / User::where('points', '>', '0')->count()) * 100;

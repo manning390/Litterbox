@@ -48,6 +48,22 @@ class Thread extends Model
     private static $likes_table = 'thread_likes';
 
     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot(){
+        parent::boot();
+        // Add the NSFW filter on all queries
+        static::addGlobalScope('nsfw', function(Builder $builder){
+            $builder->where(function($query){
+                $query->where('nsfw', Auth::user()->nsfw)
+                    ->orWhere('nsfw', false);
+            });
+        });
+    }
+
+    /**
      * Save a new Thread with related models and return the instance.
      *
      * @param array $attributes
@@ -112,9 +128,16 @@ class Thread extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    /**
+     * Sets the User of Thread and Post
+     * @param  User   $user
+     * @return Thread
+     */
     public function associateUser(User $user){
         $user->addPoints(PointType::Thread);
-        return $this->associate($user) && $this->posts()->first()->associate($user);
+        $this->associate($user)->like();
+        $this->posts()->first()->associate($user);
+        return $this;
     }
 
     /**
@@ -129,7 +152,7 @@ class Thread extends Model
      * A Thread can be unliked by the Auth'd User
      */
     public function unlike(){
-        if(!Auth::user()->owns($thread)) Auth::user()->addPoints(-1 * PointType::Like);
+        if(!Auth::user()->owns($thread)) Auth::user()->minusPoints(PointType::Like);
         return DB::table(self::$likes_table)->where('thread_id', $this->id)->where('user_id', Auth::user()->id)->delete();
     }
 
@@ -200,8 +223,9 @@ class Thread extends Model
     }
 
     public function getPopularityAttribute(){
-        // $likes = $this->likes == 0 ? 1 : $this->likes;
-        // return log($likes, self::$popularityDecayExponent) +  1 / self::$popularityDecayLifetime;
-        return 1;
+        $score = $this->likes > 1 ? $this->likes : 1;
+        $posts = $this->posts()->count();
+        $views = $this->views;
+        return (log($views, self::$viewLogDecay) * 4 + (($posts * $score) / 5))/
     }
 }

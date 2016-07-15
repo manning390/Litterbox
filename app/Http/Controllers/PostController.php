@@ -24,9 +24,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $post = Post::create($request);
-        Auth::user()->posts()->save($post);
-        Auth::user()->addPoints(PointType::Post);
+        $post = Post::create($request->all())->associateUser(Auth::user());
         return redirect()->route('thread.show', [$post]);
     }
 
@@ -63,7 +61,7 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         $this->authorize($post);
-        $post->update($request);
+        $post->update($request->all());
         return redirect()->route('post.show', [$post]);
     }
 
