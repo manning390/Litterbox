@@ -32,10 +32,10 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 // ForumControllers
 Route::resource('thread', 'ThreadController');
 Route::get('thread/restore/{thread}', 'ThreadController@restore')->name('thread.restore');
-Route::get('thread/like/{thread}', 'ThreadController@like')->name('thread.like');
-Route::get('thread/pin/{thread}', 'ThreadController@pin')->name('thread.pin');
-Route::get('thread/lock/{thread}', 'ThreadController@lock')->name('thread.lock');
-Route::get('thread/block/{thread}', 'ThreadController@block')->name('thread.block');
+Route::get('thread/{thread}/like', 'ThreadController@like')->name('thread.like');
+Route::get('thread/{thread}/pin', 'ThreadController@pin')->name('thread.pin');
+Route::get('thread/{thread}/lock', 'ThreadController@lock')->name('thread.lock');
+Route::get('thread/{thread}/block', 'ThreadController@block')->name('thread.block');
 Route::resource('post', 'PostController', ['except' => ['index', 'create']]);
 
 // User Controller
