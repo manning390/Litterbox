@@ -123,6 +123,6 @@ class User extends Authenticatable
      * @return float
      */
     public function getPercentileAttribute(){
-        return (User::where('points', '<', $this->points) / User::where('points', '>', '0')->count()) * 100;
+        return (User::where('points', '<', $this->points)->count() / User::where('points', '>', '0')->count()) * 100;
     }
 }
