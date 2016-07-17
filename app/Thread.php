@@ -49,23 +49,6 @@ class Thread extends Model
     private static $likes_table = 'thread_likes';
 
     /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot(){
-        parent::boot();
-        // Add the NSFW filter on all queries
-
-        static::addGlobalScope('nsfw', function(Builder $builder){
-            $builder->where(function($query){
-                $query->where('nsfw', false) // Always show all nsfw false threads
-                    ->orWhere('nsfw', Auth::user()->nsfw ?? false); // Show Users preference
-            });
-        });
-    }
-
-    /**
      * Save a new Thread with related models and return the instance.
      *
      * @param array $attributes
@@ -151,6 +134,11 @@ class Thread extends Model
         $query->select('threads.*')
             ->join('posts', 'posts.thread_id', '=','threads.id')
             ->orderBy('posts.created_at');
+    }
+
+    public function scopeNsfwFilter($query){
+        $query->where('nsfw', false) // Always show all nsfw false threads
+            ->orWhere('nsfw', Auth::user()->nsfw ?? false); // Show Users preference
     }
 
     /**

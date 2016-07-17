@@ -34,7 +34,7 @@ class ThreadSeeder extends Seeder
             'user_id' => 1
         ]);
         $thread->posts()->create([
-            'body' => 'Lol [b]JK[\b]',
+            'body' => 'Lol [b]JK[/b]',
             'syntax' => 'b',
             'user_id' => 1
         ]);
