@@ -5,6 +5,7 @@ namespace App;
 use Auth;
 use App\Enums\PointType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Thread extends Model
@@ -55,10 +56,11 @@ class Thread extends Model
     protected static function boot(){
         parent::boot();
         // Add the NSFW filter on all queries
+
         static::addGlobalScope('nsfw', function(Builder $builder){
             $builder->where(function($query){
-                $query->where('nsfw', Auth::user()->nsfw)
-                    ->orWhere('nsfw', false);
+                $query->where('nsfw', false) // Always show all nsfw false threads
+                    ->orWhere('nsfw', Auth::user()->nsfw ?? false); // Show Users preference
             });
         });
     }
@@ -140,6 +142,15 @@ class Thread extends Model
         $this->associate($user)->like();
         $this->posts()->first()->associate($user);
         return $this;
+    }
+
+    /**
+     * Scope for getting threads ordered by last bumped
+     */
+    public function scopeBumped($query){
+        $query->select('threads.*')
+            ->join('posts', 'posts.thread_id', '=','threads.id')
+            ->orderBy('posts.created_at');
     }
 
     /**

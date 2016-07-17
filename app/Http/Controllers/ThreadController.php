@@ -163,16 +163,4 @@ class ThreadController extends Controller
         return redirect()->route('thread.show', [$thread]);
     }
 
-    /**
-     * Scope for getting threads ordered by last bumped
-     */
-    public function scopeBumped($query){
-        $query->select('threads.*')
-            ->join('posts', 'posts.thread_id', '=','threads.id')
-            ->orderBy('posts.created_at');
-    }
-
-
-
-
 }
