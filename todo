@@ -1,15 +1,15 @@
 Administration:
+ ☐ Lockable avatar
  ☐ IP lists
  ☐ Linked account names
  ☐ Bans
 
 Forum Filters:
- ☐ NSFW
- ☐ Bumped @started
+ ✔ NSFW @done (16-07-16 16:09)
+ ✔ Bumped @done (16-07-16 16:09)
  ☐ Popular @started
 
 Logging:
- ☐ Log who upvotes @explain
  ☐ Log Paypal donations
 
 Forum:
@@ -23,15 +23,18 @@ Friend System:
  ☐ Friend System
 
 Profiles:
+ ☐ Upload profile pictures
  ☐ Titles @explain
- ☐ Profile links @explain
  ☐ Daily Dice Roll @explain
  ✔ Badges @done (16-07-10 00:37)
+ ☐ Posts / Threads
+ ☐ Badge organization
 
 Reputation System:
  ☐ Reputation Attribute @started
  ☐ Ban removing rep
  ☐ Ban without removing rep
- ☐ Votes add rep (20% max) @explain @started
+ ☐ Votes add rep (20% max) @started
  ☐ Posts add rep @started
- ☐ Threads add rep (heavier than posts) @explain @started
+ ☐ Threads add rep (heavier than posts) @started
+ ☐ Decay on no login
