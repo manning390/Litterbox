@@ -31,6 +31,13 @@ class User extends Authenticatable
     ];
 
     /**
+     *
+     */
+    protected $dates = [
+        'deleted_at', 'login_at'
+    ];
+
+    /**
      * The columns that should be parsed for json.
      *
      * @var array
@@ -53,9 +60,9 @@ class User extends Authenticatable
     /**
      * User Model Consturctor
      */
-    public function __construct(){
-        parent::__construct();
-        $this->hintJsonStructure('options', json_encode($this->$jsonStructure));
+    public function __construct(array $attributes = []){
+        parent::__construct($attributes);
+        $this->hintJsonStructure('options', json_encode($this->jsonStructure));
     }
 
     /**

@@ -23,9 +23,19 @@ class ThreadSeeder extends Seeder
             'user_id' => 1
         ]);
         $thread->posts()->create([
-            'thread_id' => 1,
             'body' => 'Ran into like **30** people playing Pokémon Go when I was running around',
             'syntax' => 'm',
+            'user_id' => 1
+        ]);
+
+        $thread = Thread::create([
+            'name' => 'Check out these tentacles',
+            'nsfw' => true,
+            'user_id' => 1
+        ]);
+        $thread->posts()->create([
+            'body' => 'Lol [b]JK[\b]',
+            'syntax' => 'b',
             'user_id' => 1
         ]);
     }

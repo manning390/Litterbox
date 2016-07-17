@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use Carbon;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -27,6 +27,7 @@ class LoginListener
      */
     public function handle(Login $event)
     {
-        $event->user->update(['login_at' => Carbon::now()]);
+        $event->user->login_at = Carbon::now();
+        $event->user->save();
     }
 }

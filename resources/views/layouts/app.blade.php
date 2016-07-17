@@ -67,7 +67,7 @@
                     @if (Auth::guest())
                         You are <strong>a guest</strong>
                     @else
-                        You are <strong><a href="{{-- route('users.profile', $user->name) --}}">{{ $user->name }}</a></strong> • <a href="{{-- route('users.settings') --}}">Settings</a>
+                        You are <strong><a href="{{ route('user.show', $user->name) }}">{{ $user->name }}</a></strong> • <a href="{{ route('user.edit') }}">Settings</a>
                     @endif
                 </p>
             </div>

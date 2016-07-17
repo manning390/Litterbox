@@ -12,7 +12,8 @@
 */
 
 Route::get('test', function(){
-    return 'rawr';
+    \Auth::loginUsingId(1);
+    return redirect()->route('home');
 });
 
 // Login Routes...
@@ -39,8 +40,8 @@ Route::get('thread/{thread}/block', 'ThreadController@block')->name('thread.bloc
 Route::resource('post', 'PostController', ['except' => ['index', 'create']]);
 
 // User Controller
-Route::get('users/{username}', 'UserController@show');
-Route::get('users/edit', 'UserController@edit');
+Route::get('users/edit', 'UserController@edit')->name('user.edit');
+Route::get('users/{username}', 'UserController@show')->name('user.show');
 
 // Root Pages
 Route::get('/', 'HomeController@index')->name('home');

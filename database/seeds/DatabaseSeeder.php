@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         // Run seeders
+        $this->call(UsersSeeder::class);
         $this->call(AclSeeder::class);
         $this->call(BadgesSeeder::class);
         $this->call(ThreadSeeder::class);
-        // $this->call(UsersTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
