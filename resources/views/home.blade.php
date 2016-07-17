@@ -13,4 +13,11 @@
             </nav>
         </div>
     </div>
+    <hr>
+    <ul>
+        @foreach($bumped as $thread)
+            <li><a href="{{ route('thread.show', $thread) }}">{{ $thread->name }}</a></li>
+        @endforeach
+    </ul>
+    <hr>
 @endsection
