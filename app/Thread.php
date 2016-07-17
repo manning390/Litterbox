@@ -69,22 +69,24 @@ class Thread extends Model
      * @param array $attributes
      * @return static
      */
-    public static function create(array $attributes = []){
-        return parent::create($attributes)
-            ->posts()->create($attributes);
+    public static function createWithPost(array $attributes = []){
+        $thread = self::create($attributes)->associate(Auth::user());
+        $thread->posts()->create($attributes)->associate(Auth::user());
+        $thread->associateUser(Auth::user());
+        return $thread;
     }
 
-    /**
-     * Update the model in the database.
-     *
-     * @param array $attributes
-     * @param array $options
-     * @return bool|int
-     */
-    public function update(array $attributes = [], array $options = []){
-        return parent::update($attributes, $options) &&
-            $this->posts()->first()->update($attributes, $options);
-    }
+    // /**
+    //  * Update the model in the database.
+    //  *
+    //  * @param array $attributes
+    //  * @param array $options
+    //  * @return bool|int
+    //  */
+    // public function update(array $attributes = [], array $options = []){
+    //     return parent::update($attributes, $options) &&
+    //         $this->posts()->first()->update($attributes, $options);
+    // }
 
     /**
      * Many Threads are created by Users
@@ -226,6 +228,6 @@ class Thread extends Model
         $score = $this->likes > 1 ? $this->likes : 1;
         $posts = $this->posts()->count();
         $views = $this->views;
-        return (log($views, self::$viewLogDecay) * 4 + (($posts * $score) / 5))/
+        return (log($views, self::$viewLogDecay) * 4 + (($posts * $score) / 5));
     }
 }

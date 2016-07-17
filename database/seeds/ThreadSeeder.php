@@ -16,13 +16,17 @@ class ThreadSeeder extends Seeder
         DB::table('posts')->truncate();
         DB::table('tag_thread')->truncate();
 
-        Thread::create([
+        $thread = Thread::create([
             'name' => 'Pokemon Go hit and it\'s insane',
             'link' => "http://www.pokemon.com/us/pokemon-video-games/pokemon-go/",
             'nsfw' => false,
+            'user_id' => 1
+        ]);
+        $thread->posts()->create([
+            'thread_id' => 1,
             'body' => 'Ran into like **30** people playing Pokémon Go when I was running around',
             'syntax' => 'm',
-            'tags' => 'anime, pokemon, pokemon go, pikachu'
+            'user_id' => 1
         ]);
     }
 }

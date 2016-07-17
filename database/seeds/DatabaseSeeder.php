@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         // Run seeders
         $this->call(AclSeeder::class);
         $this->call(BadgesSeeder::class);
+        $this->call(ThreadSeeder::class);
         // $this->call(UsersTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
