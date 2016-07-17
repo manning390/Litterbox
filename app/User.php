@@ -45,11 +45,22 @@ class User extends Authenticatable
     protected $jsonColumns = ['options'];
 
     /**
+     * The path to the folder avys are saved
+     */
+    protected $avatarPath = 'img/avys';
+
+    /**
+     * The default photo if an avatar isn't set
+     */
+    protected $defaultAvatar = 'no_avatar.gif';
+
+    /**
      * The default structure of the options json.
      *
      * @var array
      */
     protected $jsonStructure = [
+        'avatar' => '',
         'color' => '#222223',
         'syntax' => SyntaxType::Markdown,
         'nsfw' => false,
@@ -131,5 +142,9 @@ class User extends Authenticatable
      */
     public function getPercentileAttribute(){
         return (User::where('points', '<', $this->points)->count() / User::where('points', '>', '0')->count()) * 100;
+    }
+
+    public function getAvatarAttribute(){
+        return $this->avatarPath . $this->avatar ?? $this->defaultAvatar;
     }
 }
