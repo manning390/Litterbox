@@ -47,7 +47,7 @@ class ThreadController extends Controller
      */
     public function store(StoreThreadRequest $request)
     {
-        $thread = Thread::create($request->all())->associateUser(Auth::user());
+        $thread = Thread::createWithPost($request->all());
         $thread->tags()->saveMany(Tag::firstOrCreateMany($request->tags));
         return redirect()->route('thread.show', [$thread]);
     }
@@ -62,7 +62,6 @@ class ThreadController extends Controller
     {
         $posts = $thread->rootPosts()->paginate();
         $syntaxes = collect(SyntaxType::getKeys())->flip();
-        // Event::fire('thread.view', $thread);
         return view('thread.show', compact('thread', 'posts', 'syntaxes'));
     }
 
