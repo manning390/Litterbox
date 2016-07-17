@@ -169,7 +169,7 @@ class Post extends Model
      * @return string
      */
     public function getPermalinkAttribute(){
-        return route('thread.show', [$post->thread, 'page'=>$post->getPage()]).'#'.$post->id;
+        return route('thread.show', [$this->thread, 'page' => $this->getPage()]).'#'.$this->id;
     }
 
     /**
