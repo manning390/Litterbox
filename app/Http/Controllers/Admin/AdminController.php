@@ -9,12 +9,16 @@ use App\Http\Requests;
 
 class AdminController extends Controller
 {
-    public function __construct(){
-        parent::__construct();
-        $this->middleware('can:make_annoucement', ['only'=>['announce', 'storeAnnounce']]);
-    }
     public function index(){
         return view('admin.home');
+    }
+
+    public function assume(User $user){
+        if(Auth::user()->cannot('assume_user')) abort(403);
+
+        Auth::login($user);
+
+        return redirect()->route('home')->flash('success', "You've successfully stolen the identity of $user->name.");
     }
 
     public function announce(){
@@ -22,6 +26,8 @@ class AdminController extends Controller
     }
 
     public function storeAnnounce(Request $request){
+        if(Auth::user()->cannot('make_annoucement')) abort(403);
+
         $this->validate($request, [
             'name' => 'required|max:255',
             'body' => 'required'

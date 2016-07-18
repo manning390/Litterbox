@@ -45,6 +45,7 @@ Route::get('users/{username}', 'UserController@show')->name('user.show');
 
 Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'as'=>'admin.', 'namespace' => 'Admin'], function(){
 
+    Route::post('/assume/{user}', 'AdminController@assume')->name('assume');
     Route::get('/announce', 'AdminController@announce')->name('announce');
     Route::post('/announce', 'AdminController@storeAnnounce')->name('announce.store');
     Route::get('/', 'AdminController@index')->name('home');
