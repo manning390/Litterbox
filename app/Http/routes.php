@@ -52,4 +52,5 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'as
 });
 
 // Root Pages
+Route::post('/announce/{announcement}/dismiss', 'HomeController@dismiss')->name('dismiss');
 Route::get('/', 'HomeController@index')->name('home');

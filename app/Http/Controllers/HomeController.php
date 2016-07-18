@@ -21,7 +21,7 @@ class HomeController extends Controller
         return view('home', compact('bumped', 'new'));
     }
 
-    public function dismissAnnouncement(Announcement $announcement){
+    public function dismiss(Announcement $announcement){
         $announcement->dismiss();
         return response()->json();
     }
