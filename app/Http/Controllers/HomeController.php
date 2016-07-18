@@ -20,4 +20,9 @@ class HomeController extends Controller
         $new = Thread::nsfwFilter()->orderBy('created_at')->paginate();
         return view('home', compact('bumped', 'new'));
     }
+
+    public function dismissAnnouncement(Announcement $announcement){
+        $announcement->dismiss();
+        return response()->json();
+    }
 }
