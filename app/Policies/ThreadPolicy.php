@@ -11,30 +11,30 @@ class ThreadPolicy
     use HandlesAuthorization;
 
     public function edit(User $user, Thread $thread){
-        return $user->owns($thread) || $user->hasPermission('edit_forum');
+        return $user->owns($thread) || $user->can('edit_forum');
     }
 
     public function update(User $user, Thread $thread){
-        return $user->owns($thread) || $user->hasPermission('edit_forum');
+        return $user->owns($thread) || $user->can('edit_forum');
     }
 
     public function destroy(User $user, Thread $thread){
-        return $user->owns($thread) || $user->hasPermission('delete_forum');
+        return $user->owns($thread) || $user->can('delete_forum');
     }
 
     public function restore(User $user, Thread $thread){
-        return $user->hasPermission('delete_forum');
+        return $user->can('delete_forum');
     }
 
     public function pin(User $user, Thread $thread){
-        return $user->hasPermission('pin_forum');
+        return $user->can('pin_forum');
     }
 
     public function lock(User $user, Thread $thread){
-        return $user->owns($post) || $user->hasPermission('lock_forum');
+        return $user->owns($post) || $user->can('lock_forum');
     }
 
     public function block(User $user, Thread $thread){
-        return $user->hasPermission('block_forum');
+        return $user->can('block_forum');
     }
 }
