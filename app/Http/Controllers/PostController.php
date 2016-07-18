@@ -78,4 +78,18 @@ class PostController extends Controller
         return redirect()->route('thread.show', [$post->thread]);
     }
 
+    /**
+     * Flag the Post
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Post    $post
+     * @return \Illuminate\Http\Response
+     */
+    public function flag(Request $request, Post $post){
+        $this->validate($request, [
+            'type' => 'required|enum:FlagType',
+            'body' => 'max:300'
+        ]);
+        $post->flag($request->all());
+        return redirect()->route('post.show', [$post])->flash('success', 'Post has been successfully flagged.');
+    }
 }
