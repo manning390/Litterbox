@@ -43,5 +43,12 @@ Route::resource('post', 'PostController', ['except' => ['index', 'create']]);
 Route::get('users/edit', 'UserController@edit')->name('user.edit');
 Route::get('users/{username}', 'UserController@show')->name('user.show');
 
+Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'as'=>'admin.', 'namespace' => 'Admin'], function(){
+
+    Route::get('/announce', 'AdminController@announce')->name('announce');
+    Route::post('/announce', 'AdminController@storeAnnounce');
+    Route::get('/', 'AdminController@index')->name('home');
+});
+
 // Root Pages
 Route::get('/', 'HomeController@index')->name('home');
