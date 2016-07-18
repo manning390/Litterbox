@@ -6,7 +6,7 @@ use App\Thread;
 use Session;
 use Closure;
 
-class ViewThreads
+class ViewThreadMiddleware
 {
     /**
      * Handle an incoming request.
