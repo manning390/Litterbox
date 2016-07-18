@@ -24,6 +24,7 @@ class UpdateUserProfileRequest extends Request
     public function rules()
     {
         return [
+            'avatar' => 'image|max:10000'
             'color' => 'required|hexcolor',
             'syntax' => 'required|enum:SyntaxType',
             'mentionsEmail' => 'boolean',
