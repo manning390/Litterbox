@@ -11,15 +11,15 @@ class PostPolicy
     use HandlesAuthorization;
 
     public function edit(User $user, Post $post){
-        return $user->owns($post) || $user->hasPermission('edit_forum');
+        return $user->owns($post) || $user->can('edit_forum');
     }
 
     public function update(User $user, Post $post){
-        return $user->owns($post) || $user->hasPermission('edit_forum');
+        return $user->owns($post) || $user->can('edit_forum');
     }
 
     public function destroy(User $user, Post $post){
-        return $user->owns($post) || $user->hasPermission('delete_forum');
+        return $user->owns($post) || $user->can('delete_forum');
     }
 
 }

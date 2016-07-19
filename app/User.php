@@ -86,6 +86,13 @@ class User extends Authenticatable
     }
 
     /**
+     * User can see many Announcements
+     */
+    public function announcements(){
+        return $this->belongsToMany(Annoucement::class);
+    }
+
+    /**
      * User creates many Threads
      */
     public function threads(){

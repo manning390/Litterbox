@@ -96,9 +96,9 @@ class AclSeeder extends Seeder
         ]);
 
         // Administration
-        $makeAnnoucements = Permission::create([
-            'name'=>'make_annoucement',
-            'label'=>'Make Annoucements'
+        $makeAnnouncements = Permission::create([
+            'name'=>'make_announcement',
+            'label'=>'Make Announcements'
         ]);
         $viewAdministration = Permission::create([
             'name'=>'view_admin',

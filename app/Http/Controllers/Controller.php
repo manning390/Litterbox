@@ -15,5 +15,6 @@ class Controller extends BaseController
 
     public function __construct(){
         view()->share('user', Auth::user());
+        view()->share('announcements', Auth::user()->announcements);
     }
 }

@@ -30,7 +30,7 @@ Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\PasswordController@reset');
 
-// ForumControllers
+// Forum Controllers
 Route::resource('thread', 'ThreadController');
 Route::get('thread/restore/{thread}', 'ThreadController@restore')->name('thread.restore');
 Route::get('thread/{thread}/like', 'ThreadController@like')->name('thread.like');
@@ -43,5 +43,14 @@ Route::resource('post', 'PostController', ['except' => ['index', 'create']]);
 Route::get('users/edit', 'UserController@edit')->name('user.edit');
 Route::get('users/{username}', 'UserController@show')->name('user.show');
 
-// Root Pages
+Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'as'=>'admin.', 'namespace' => 'Admin'], function(){
+
+    Route::post('/assume/{user}', 'AdminController@assume')->name('assume');
+    Route::get('/announce', 'AdminController@announce')->name('announce');
+    Route::post('/announce', 'AdminController@storeAnnounce')->name('announce.store');
+    Route::get('/', 'AdminController@index')->name('home');
+});
+
+// Root Routes
+Route::post('/announce/{announcement}/dismiss', 'HomeController@dismiss')->name('dismiss');
 Route::get('/', 'HomeController@index')->name('home');

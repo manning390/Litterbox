@@ -50,6 +50,10 @@ class Post extends Model
         SyntaxType::Markdown => 'formatMarkdown'
     ];
 
+    public function flags(){
+        return $this->hasMany(Flag::class);
+    }
+
     /**
      * Many Posts are created by Users
      */
@@ -179,5 +183,14 @@ class Post extends Model
      */
     public function thumbsUp(){
         return !Auth::user()->owns($this)? $this->user()->addPoints(PointType::Thumbs) : false;
+    }
+
+    /**
+     * Create a Flag associated with Post
+     * @param  array  $attributes
+     * @return mixed
+     */
+    public function flag(array $attributes = []){
+        return $this->flags()->create($attributes)->associate(Auth::user());
     }
 }
