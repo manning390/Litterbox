@@ -187,6 +187,7 @@ class Post extends Model
 
     /**
      * Create a Flag associated with Post
+     *
      * @param  array  $attributes
      * @return mixed
      */

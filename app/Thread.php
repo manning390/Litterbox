@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Auth;
 use App\Enums\PointType;
 use Illuminate\Database\Eloquent\Model;
