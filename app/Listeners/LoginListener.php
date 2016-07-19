@@ -9,14 +9,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class LoginListener
 {
+    protected $request;
+
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
-        //
+        $this->request = $request;
     }
 
     /**
@@ -27,6 +29,7 @@ class LoginListener
      */
     public function handle(Login $event)
     {
+        $event->user->addIp($this->request->ip());
         $event->user->login_at = Carbon::now();
         $event->user->save();
     }

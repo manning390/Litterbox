@@ -1,6 +1,6 @@
 Administration:
  ☐ Lockable avatar
- ☐ IP lists
+ ✔ IP lists @done (16-07-18 23:05)
  ☐ Linked account names
  ☐ Bans
 
@@ -24,10 +24,10 @@ Friend System:
 
 Profiles:
  ☐ Upload profile pictures @started
- ☐ Titles @explain
+ ☐ Titles @explain @ux
  ☐ Daily Dice Roll @explain
  ✔ Badges @done (16-07-10 00:37)
- ☐ Posts / Threads
+ ☐ Posts / Threads @ux
  ☐ Badge organization
 
 Reputation System:
