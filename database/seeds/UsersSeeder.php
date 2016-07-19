@@ -26,5 +26,15 @@ class UsersSeeder extends Seeder
             //     'mentionsEmail' => true,
             //     'pmsEmail' => true
             // ])
+        User::create([
+            'name' => "Numbers",
+            'email' => 'yup@yup.com',
+            'password' => bcrypt('123456'),
+        ]);
+        User::create([
+            'name' => "Warlock",
+            'email' => 'nope@nope.com',
+            'password' => bcrypt('123456'),
+        ]);
     }
 }

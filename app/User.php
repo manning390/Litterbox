@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use App\Enums\PointType;
 use App\Enums\SyntaxType;
 use Eloquent\Dialect\Json;
@@ -124,7 +125,18 @@ class User extends Authenticatable
      * Many Users have many Badges
      */
     public function badges(){
-        $this->belongsToMany(Badges::class);
+        return $this->belongsToMany(Badges::class);
+    }
+
+    /**
+     * A User requests Many Users to be friends
+     */
+    public function friendRequests(){
+        return $this->belongsToMany(self::class, 'friends', 'from_id', 'to_id');
+    }
+
+    public function friends(){
+
     }
 
     /**
@@ -133,18 +145,22 @@ class User extends Authenticatable
      * @return Collection
      */
     public function friends(){
-        return DB::table('friends as A')->join('friends as B', 'from_id', '=', 'to_id')->where('A.id', '<>', 'B.id')->get();
+        // SELECT A.to_id as friends FROM friends A JOIN friends B ON B.from_id = A.to_id WHERE A.id <> B.id AND A.from_id = B.to_id AND A.from_id = 1;
+        return DB::table('friends AS A')->select('A.to_id as friends')->join('friends AS B', 'B.from_id', '=', 'A.to_id')->where('A.id', '<>', 'B.id')->where('A.from_id', 'B.to_id')->where('A.from_id', $this->id)->get();
+        // ->transform(function($item){
+        //     return self::find($item);
+        // });
     }
 
-    /**
-     * Inserts 1-direction Friendship into Friends table
-     *
-     * @param \App\User
-     * @return bool
-     */
-    public function requestFriend(User $to){
-        return DB::table('friends')->insert(['from_id' => $this->id, 'to_id' => $to->id]);
-    }
+    // /**
+    //  * Inserts one direction friendship into Friends table
+    //  *
+    //  * @param \App\User
+    //  * @return bool
+    //  */
+    // public function addFriend(User $to){
+    //     return DB::table('friends')->insert(['from_id' => $this->id, 'to_id' => $to->id, "created_at" =>  \Carbon\Carbon::now(), "updated_at" => \Carbon\Carbon::now()]);
+    // }
 
     /**
      * Add Points using PointType

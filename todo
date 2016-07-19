@@ -4,6 +4,10 @@ Administration:
  ✔ IP lists @done (16-07-18 23:05)
  ☐ Linked account names
  ☐ Bans @started
+   ☐ Time Bans
+   ☐ IP Bans
+   ☐ Shadow Bans
+ ☐ Manage Flags
 
 Forum Filters:
  ✔ NSFW @done (16-07-16 16:09)
@@ -19,7 +23,7 @@ Forum:
  ✔ Post Permalinks @done (16-07-10 14:30)
  ☐ Youtube Embed
  ☐ Twitter Embed
- ☐ Flags
+ ✔ Flags  @done (16-07-19 12:50)
 
 Friend System:
  ☐ Friend System @started
