@@ -121,6 +121,25 @@ class User extends Authenticatable
     }
 
     /**
+     * Returns list of confirmed friends
+     *
+     * @return Collection
+     */
+    public function friends(){
+        return DB::table('friends as A')->join('friends as B', 'from_id', '=', 'to_id')->where('A.id', '<>', 'B.id')->get();
+    }
+
+    /**
+     * Inserts 1-direction Friendship into Friends table
+     *
+     * @param \App\User
+     * @return bool
+     */
+    public function requestFriend(User $to){
+        return DB::table('friends')->insert(['from_id' => $this->id, 'to_id' => $to->id]);
+    }
+
+    /**
      * Add Points using PointType
      */
     public function addPoints(PointType $points){
