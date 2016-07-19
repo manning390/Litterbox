@@ -30,7 +30,6 @@ class LoginListener
     public function handle(Login $event)
     {
         $event->user->addIp($this->request->ip());
-        $event->user->login_at = Carbon::now();
-        $event->user->save();
+        $event->user->update(['login_at' => Carbon::now()]);
     }
 }
