@@ -68,14 +68,14 @@ class Post extends Model
      * A Post may have a parent Post
      */
     public function parent(){
-        return $this->belongsTo(Post::class, 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
     /**
      * A Post may have child Posts
      */
     public function children(){
-        return $this->hasMany(Post::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     /**
