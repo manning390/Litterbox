@@ -61,18 +61,6 @@ class Thread extends Model
         return $thread;
     }
 
-    // /**
-    //  * Update the model in the database.
-    //  *
-    //  * @param array $attributes
-    //  * @param array $options
-    //  * @return bool|int
-    //  */
-    // public function update(array $attributes = [], array $options = []){
-    //     return parent::update($attributes, $options) &&
-    //         $this->posts()->first()->update($attributes, $options);
-    // }
-
     /**
      * Many Threads are created by Users
      */
