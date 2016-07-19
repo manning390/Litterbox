@@ -13,7 +13,7 @@ class UpdateUserProfileRequest extends Request
      */
     public function authorize()
     {
-        return $user->id === Auth::user()->id || $user->hasPermission('manage_profiles'));
+        return $user->id === Auth::user()->id || $user->can('manage_profiles'));
     }
 
     /**
