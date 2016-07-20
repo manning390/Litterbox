@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
             $pattern = '/^#?[a-fA-F0-9]{3,6}$/';
             return (boolean) preg_match($pattern, $value);
         });
+        Relation::morphMap(BanType::$morphMap);
     }
 
     /**

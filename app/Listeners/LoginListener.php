@@ -29,7 +29,7 @@ class LoginListener
      */
     public function handle(Login $event)
     {
-        $event->user->addIp($this->request->ip());
+        $event->user->attach(Ip::findOrCreate($this->request->ip());
         $event->user->update(['login_at' => Carbon::now()]);
     }
 }
