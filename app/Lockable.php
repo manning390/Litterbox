@@ -4,6 +4,8 @@ namespace App;
 
 use Auth;
 use Carbon\Carbon;
+use App\Enums\ActionType;
+use App\Events\ModerationActionEvent;
 
 trait Lockable {
     public function lock(){
@@ -14,7 +16,8 @@ trait Lockable {
         return $this->update(['locked_at' => NULL]);
     }
 
-    public function toggleLock(){
+    public function toggleLock(string $reason = ''){
+        event(new ModerationActionEvent(Auth::user(), ActionType::ThreadLock, $reason));
         return $this->locked ? $this->unlock() : $this->lock();
     }
 
@@ -26,7 +29,8 @@ trait Lockable {
         return $this->update(['blocked_at' => NULL, 'blocked_by', NULL]);
     }
 
-    public function toggleBlock(){
+    public function toggleBlock(string $reason = ''){
+        event(new ModerationActionEvent(Auth::user(), ActionType::ThreadBlock, $reason));
         return $this->blocked ? $this->unblock() : $this->block();
     }
 

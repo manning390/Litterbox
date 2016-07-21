@@ -32,11 +32,11 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 
 // Forum Controllers
 Route::resource('thread', 'ThreadController');
-Route::get('thread/restore/{thread}', 'ThreadController@restore')->name('thread.restore');
 Route::get('thread/{thread}/like', 'ThreadController@like')->name('thread.like');
-Route::get('thread/{thread}/pin', 'ThreadController@pin')->name('thread.pin');
-Route::get('thread/{thread}/lock', 'ThreadController@lock')->name('thread.lock');
-Route::get('thread/{thread}/block', 'ThreadController@block')->name('thread.block');
+Route::post('thread/{thread}/restore', 'ThreadController@restore')->name('thread.restore');
+Route::post('thread/{thread}/pin', 'ThreadController@pin')->name('thread.pin');
+Route::post('thread/{thread}/lock', 'ThreadController@lock')->name('thread.lock');
+Route::post('thread/{thread}/block', 'ThreadController@block')->name('thread.block');
 Route::resource('post', 'PostController', ['except' => ['index', 'create']]);
 
 // User Controller
@@ -45,7 +45,7 @@ Route::get('users/{username}', 'UserController@show')->name('user.show');
 
 Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'as'=>'admin.', 'namespace' => 'Admin'], function(){
 
-    Route::post('/assume/{user}', 'AdminController@assume')->name('assume');
+    Route::post('/{user}/assume', 'AdminController@assume')->name('assume');
     Route::get('/announce', 'AdminController@announce')->name('announce');
     Route::post('/announce', 'AdminController@storeAnnounce')->name('announce.store');
     Route::get('/', 'AdminController@index')->name('home');
