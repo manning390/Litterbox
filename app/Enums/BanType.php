@@ -3,19 +3,21 @@
 namespace App\Enums;
 
 class BanType extends Enum{
-    const Web = 'web';
-    const Ip = 'ip';
-    const Thread = 'thread';
-    const Shadow = 'shadow';
-    const Chat = 'chat';
-    const Mute = 'mute';
+    const UserBan = 'userBan';
+    const IpBan = 'ipBan';
+    const ThreadBan = 'threadBan';
+    const ShadowBan = 'shadowBan';
+    const ChatBan = 'chatBan';
+    const MuteBan = 'chatMute';
+    const ProfileBan = 'profileBan';
 
-    public $morphMap = [
-        self::Web => \App\User::class,
-        self::Ip  => \App\Ip::class,
-        self::Thread => \App\User::class,
-        self::Shadow => \App\User::class,
-        self::Chat => \App\User::class,
-        self::Mute => \App\User::class,
+    public static $morphMap = [
+        self::UserBan => \App\User::class,
+        self::IpBan  => \App\Ip::class,
+        self::ThreadBan => \App\User::class,
+        self::ShadowBan => \App\User::class,
+        self::ChatBan => \App\User::class,
+        self::MuteBan => \App\User::class,
+        self::ProfileBan => \App\User::class,
     ];
 }

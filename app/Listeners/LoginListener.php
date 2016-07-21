@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class LoginListener
 {
-    protected $request;
+    public $request;
 
     /**
      * Create the event listener.
@@ -29,7 +29,7 @@ class LoginListener
      */
     public function handle(Login $event)
     {
-        $event->user->attach(Ip::findOrCreate($this->request->ip());
+        $event->user->attach(Ip::findOrCreate($this->request->ip()));
         $event->user->update(['login_at' => Carbon::now()]);
     }
 }

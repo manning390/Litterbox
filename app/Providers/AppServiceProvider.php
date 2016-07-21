@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use Validator;
+use App\Enums\BanType;
 use App\Enums\Enum;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {

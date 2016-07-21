@@ -142,10 +142,6 @@ class User extends Authenticatable
         return $this->belongsToMany(self::class, 'friends', 'from_id', 'to_id');
     }
 
-    public function friends(){
-
-    }
-
     /**
      * Returns list of confirmed friends
      *
