@@ -11,7 +11,7 @@ class Badge extends Model
         'name', 'label', 'path'
     ];
 
-    protected $badgesPath = '/img/badges/';
+    public static $badgesDir = 'badges/';
 
     /**
      * Many Badges have many Users
@@ -21,6 +21,6 @@ class Badge extends Model
     }
 
     public function getPathAttribute(){
-        return $this->badgesPath . $this->path;
+        return self::$badgesDir . $this->path;
     }
 }
