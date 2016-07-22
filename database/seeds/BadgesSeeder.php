@@ -20,297 +20,297 @@ class BadgesSeeder extends Seeder
             [
                 'name' => 'accomplished_artist',
                 'label' => 'Accomplished Artist',
-                'path' => 'accomplished artist.png'
+                'filename' => 'accomplished artist.png'
             ],
             [
                 'name' => 'alc',
                 'label' => 'Alc',
-                'path' => 'alc.png'
+                'filename' => 'alc.png'
             ],
             [
                 'name' => 'amvc1_1',
                 'label' => 'Amvc1-1',
-                'path' => 'amvc1-1.png'
+                'filename' => 'amvc1-1.png'
             ],
             [
                 'name' => 'amvc1_2',
                 'label' => 'Amvc1-2',
-                'path' => 'amvc1-2.png'
+                'filename' => 'amvc1-2.png'
             ],
             [
                 'name' => 'amvc1_3',
                 'label' => 'Amvc1-3',
-                'path' => 'amvc1-3.png'
+                'filename' => 'amvc1-3.png'
             ],
             [
                 'name' => 'amvc1_par',
                 'label' => 'Amvc1-par',
-                'path' => 'amvc1-par.png'
+                'filename' => 'amvc1-par.png'
             ],
             [
                 'name' => 'amvc2_1',
                 'label' => 'Amvc2-1',
-                'path' => 'amvc2-1.png'
+                'filename' => 'amvc2-1.png'
             ],
             [
                 'name' => 'amvc2_2',
                 'label' => 'Amvc2-2',
-                'path' => 'amvc2-2.png'
+                'filename' => 'amvc2-2.png'
             ],
             [
                 'name' => 'amvc2_3',
                 'label' => 'Amvc2-3',
-                'path' => 'amvc2-3.png'
+                'filename' => 'amvc2-3.png'
             ],
             [
                 'name' => 'amvc2_par',
                 'label' => 'Amvc2-par',
-                'path' => 'amvc2-par.png'
+                'filename' => 'amvc2-par.png'
             ],
             [
                 'name' => 'aspiring_writer',
                 'label' => 'Aspiring Writer',
-                'path' => 'aspiring writer.png'
+                'filename' => 'aspiring writer.png'
             ],
             [
                 'name' => 'awesomenauts',
                 'label' => 'Awesomenauts',
-                'path' => 'awesomenauts.png'
+                'filename' => 'awesomenauts.png'
             ],
             [
                 'name' => 'bani',
                 'label' => 'Bani',
-                'path' => 'bani.png'
+                'filename' => 'bani.png'
             ],
             [
                 'name' => 'base',
                 'label' => 'Base',
-                'path' => 'base.png'
+                'filename' => 'base.png'
             ],
             [
                 'name' => 'benefactor',
                 'label' => 'Benefactor',
-                'path' => 'benefactor.png'
+                'filename' => 'benefactor.png'
             ],
             [
                 'name' => 'brainiac',
                 'label' => 'Brainiac',
-                'path' => 'brainiac.png'
+                'filename' => 'brainiac.png'
             ],
             [
                 'name' => 'brain',
                 'label' => 'Brain',
-                'path' => 'brain.png'
+                'filename' => 'brain.png'
             ],
             [
                 'name' => 'cancer',
                 'label' => 'Cancer',
-                'path' => 'cancer.png'
+                'filename' => 'cancer.png'
             ],
             [
                 'name' => 'certified_idiot',
                 'label' => 'Certified Idiot',
-                'path' => 'certified idiot.png'
+                'filename' => 'certified idiot.png'
             ],
             [
                 'name' => 'chorus_enthusiast',
                 'label' => 'Chorus Enthusiast',
-                'path' => 'chorus enthusiast.png'
+                'filename' => 'chorus enthusiast.png'
             ],
             [
                 'name' => 'cl_savior',
                 'label' => 'Cl Savior',
-                'path' => 'cl savior.png'
+                'filename' => 'cl savior.png'
             ],
             [
                 'name' => 'corgi',
                 'label' => 'Corgi',
-                'path' => 'corgi.png'
+                'filename' => 'corgi.png'
             ],
             [
                 'name' => 'duck',
                 'label' => 'Duck',
-                'path' => 'duck.png'
+                'filename' => 'duck.png'
             ],
             [
                 'name' => 'eternal_flame',
                 'label' => 'Eternal-flame',
-                'path' => 'eternal-flame.png'
+                'filename' => 'eternal-flame.png'
             ],
             [
                 'name' => 'ex_mod',
                 'label' => 'Ex-mod',
-                'path' => 'ex-mod.png'
+                'filename' => 'ex-mod.png'
             ],
             [
                 'name' => 'generous',
                 'label' => 'Generous',
-                'path' => 'generous.png'
+                'filename' => 'generous.png'
             ],
             [
                 'name' => 'god',
                 'label' => 'God',
-                'path' => 'god.png'
+                'filename' => 'god.png'
             ],
             [
                 'name' => 'grandmaster',
                 'label' => 'Grandmaster',
-                'path' => 'grandmaster.png'
+                'filename' => 'grandmaster.png'
             ],
             [
                 'name' => 'guillotine',
                 'label' => 'Guillotine',
-                'path' => 'guillotine.png'
+                'filename' => 'guillotine.png'
             ],
             [
                 'name' => 'halloween',
                 'label' => 'Halloween',
-                'path' => 'halloween.png'
+                'filename' => 'halloween.png'
             ],
             [
                 'name' => 'handcuffs',
                 'label' => 'Handcuffs',
-                'path' => 'handcuffs.png'
+                'filename' => 'handcuffs.png'
             ],
             [
                 'name' => 'letter',
                 'label' => 'Letter',
-                'path' => 'letter.png'
+                'filename' => 'letter.png'
             ],
             [
                 'name' => 'lurk',
                 'label' => 'Lurk',
-                'path' => 'lurk.png'
+                'filename' => 'lurk.png'
             ],
             [
                 'name' => 'mentlegen',
                 'label' => 'Mentlegen',
-                'path' => 'mentlegen.png'
+                'filename' => 'mentlegen.png'
             ],
             [
                 'name' => 'mmmmmm_beeeeer',
                 'label' => 'Mmmmmm, Beeeeer',
-                'path' => 'mmmmmm, beeeeer.png'
+                'filename' => 'mmmmmm, beeeeer.png'
             ],
             [
                 'name' => 'modold',
                 'label' => 'Modold',
-                'path' => 'modold.png'
+                'filename' => 'modold.png'
             ],
             [
                 'name' => 'mod',
                 'label' => 'Mod',
-                'path' => 'mod.png'
+                'filename' => 'mod.png'
             ],
             [
                 'name' => 'mpd',
                 'label' => 'Mpd',
-                'path' => 'mpd.png'
+                'filename' => 'mpd.png'
             ],
             [
                 'name' => 'narcissus',
                 'label' => 'Narcissus',
-                'path' => 'narcissus.png'
+                'filename' => 'narcissus.png'
             ],
             [
                 'name' => 'newfag',
                 'label' => 'Newfag',
-                'path' => 'newfag.png'
+                'filename' => 'newfag.png'
             ],
             [
                 'name' => 'news',
                 'label' => 'News',
-                'path' => 'news.png'
+                'filename' => 'news.png'
             ],
             [
                 'name' => 'old_chap',
                 'label' => 'Old-chap',
-                'path' => 'old-chap.png'
+                'filename' => 'old-chap.png'
             ],
             [
                 'name' => 'pokemon_champion_casual',
                 'label' => 'Pokemon Champion Casual',
-                'path' => 'pokemon champion casual.png'
+                'filename' => 'pokemon champion casual.png'
             ],
             [
                 'name' => 'pokemon_champion',
                 'label' => 'Pokemon Champion',
-                'path' => 'pokemon champion.png'
+                'filename' => 'pokemon champion.png'
             ],
             [
                 'name' => 'pokemon_master',
                 'label' => 'Pokemon Master',
-                'path' => 'pokemon master.png'
+                'filename' => 'pokemon master.png'
             ],
             [
                 'name' => 'rabu',
                 'label' => 'Rabu',
-                'path' => 'rabu.png'
+                'filename' => 'rabu.png'
             ],
             [
                 'name' => 'radio',
                 'label' => 'Radio',
-                'path' => 'radio.png'
+                'filename' => 'radio.png'
             ],
             [
                 'name' => 'ranger',
                 'label' => 'Ranger',
-                'path' => 'ranger.png'
+                'filename' => 'ranger.png'
             ],
             [
                 'name' => 'reformed',
                 'label' => 'Reformed',
-                'path' => 'reformed.png'
+                'filename' => 'reformed.png'
             ],
             [
                 'name' => 'rep1',
                 'label' => 'Rep1',
-                'path' => 'rep1.png'
+                'filename' => 'rep1.png'
             ],
             [
                 'name' => 'rep',
                 'label' => 'Rep',
-                'path' => 'rep.png'
+                'filename' => 'rep.png'
             ],
             [
                 'name' => 'stalker',
                 'label' => 'Stalker',
-                'path' => 'stalker.png'
+                'filename' => 'stalker.png'
             ],
             [
                 'name' => 'stocks',
                 'label' => 'Stocks',
-                'path' => 'stocks.png'
+                'filename' => 'stocks.png'
             ],
             [
                 'name' => 'strategist',
                 'label' => 'Strategist',
-                'path' => 'strategist.png'
+                'filename' => 'strategist.png'
             ],
             [
                 'name' => 'timey_wimey',
                 'label' => 'Timey Wimey',
-                'path' => 'timey wimey.png'
+                'filename' => 'timey wimey.png'
             ],
             [
                 'name' => 'treasure_hunter',
                 'label' => 'Treasure Hunter',
-                'path' => 'treasure hunter.png'
+                'filename' => 'treasure hunter.png'
             ],
             [
                 'name' => 'what_a_nerd',
                 'label' => 'What A Nerd!',
-                'path' => 'what a nerd!.png'
+                'filename' => 'what a nerd!.png'
             ],
             [
                 'name' => 'writer',
                 'label' => 'Writer',
-                'path' => 'writer.png'
+                'filename' => 'writer.png'
             ],
             [
                 'name' => 'writers',
                 'label' => 'Writers',
-                'path' => 'writers.png'
+                'filename' => 'writers.png'
             ]
         ];
 

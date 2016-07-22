@@ -12,8 +12,9 @@
 */
 
 Route::get('test', function(){
-    \Auth::loginUsingId(1);
-    return redirect()->route('home');
+    $b = \App\Badge::find(1);
+    dd($b->path);
+    return view('test')->withBadge($b);
 });
 
 // Login Routes...
@@ -43,12 +44,15 @@ Route::resource('post', 'PostController', ['except' => ['index', 'create']]);
 Route::get('users/edit', 'UserController@edit')->name('user.edit');
 Route::get('users/{username}', 'UserController@show')->name('user.show');
 
-Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'as'=>'admin.', 'namespace' => 'Admin'], function(){
+Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'namespace' => 'Admin'], function(){
 
-    Route::post('/{user}/assume', 'AdminController@assume')->name('assume');
-    Route::get('/announce', 'AdminController@announce')->name('announce');
-    Route::post('/announce', 'AdminController@storeAnnounce')->name('announce.store');
-    Route::get('/', 'AdminController@index')->name('home');
+    Route::resource('badge', 'BadgeController');
+    Route::group(['as'=>'admin.'], function(){
+        Route::post('/{user}/assume', 'AdminController@assume')->name('assume');
+        Route::get('/announce', 'AdminController@announce')->name('announce');
+        Route::post('/announce', 'AdminController@storeAnnounce')->name('announce.store');
+        Route::get('/', 'AdminController@index')->name('home');
+    });
 });
 
 // Root Routes

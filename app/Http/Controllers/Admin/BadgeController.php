@@ -1,13 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Storage;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BadgeController extends Controller
 {
+
+    public function __construct(){
+        parent::__construct();
+        $this->middleware('can:manage_badges', ['except'=>['index','show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,17 +44,19 @@ class BadgeController extends Controller
      */
     public function store(StoreBadgeRequest $request)
     {
+        $file = $request->file('image');
+        $extension = $file->getClinetOriginalExtension();
+
         $badge = new Badge;
-        $badge->name = $$request->input('name');
+        $badge->name = $request->input('name');
         $badge->label = $request->input('label') ?? realTitleCase($request->input('name'));
         $badge->save();
 
-        // Storage::disk('public')->put('')
+        $badge->update(['filename' => $file->getFilename().'.'.$extension]);
 
-        // $image = $request->file('image');
-        // $filename = .'_'.$file->getClientOriginalName();
-        // $badge->path = ;
+        Storage::disk('public')->put(Badge::$badgeDir.$badge->filename, File::get($file));
 
+        return redirect()->route('badge.show', [$badge]);
     }
 
     /**
@@ -56,9 +65,9 @@ class BadgeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Badge $badge)
     {
-        //
+        // return view('badge.show', [$badge]);
     }
 
     /**
@@ -67,9 +76,9 @@ class BadgeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Badge $badge)
     {
-        //
+        // return view('badge.edit', compact('badge'));
     }
 
     /**
@@ -79,7 +88,7 @@ class BadgeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Badge $id)
     {
         //
     }
@@ -90,7 +99,7 @@ class BadgeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Badge $id)
     {
         //
     }
