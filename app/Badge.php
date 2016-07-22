@@ -2,25 +2,26 @@
 
 namespace App;
 
+use Storage;
 use Illuminate\Database\Eloquent\Model;
 
 class Badge extends Model
 {
 
-    protected $fillable = [
-        'name', 'label', 'path'
-    ];
+    public static $badgeDir = 'badges/';
 
-    protected $badgesPath = '/img/badges/';
+    protected $fillable = [
+        'name', 'label', 'filename'
+    ];
 
     /**
      * Many Badges have many Users
      */
     public function users(){
-        $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function getPathAttribute(){
-        return $this->badgesPath . $this->path;
+        return Storage::url(self::$badgeDir . $this->filename);
     }
 }

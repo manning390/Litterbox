@@ -133,10 +133,10 @@ class ThreadController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function pin(Thread $thread)
+    public function pin(Request $request, Thread $thread)
     {
         $this->authorize($thread);
-        $thread->togglePin();
+        $thread->togglePin($request->input('body'));
         return redirect()->route('home');
     }
 
@@ -145,10 +145,10 @@ class ThreadController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function lock(Thread $thread)
+    public function lock(Request $request, Thread $thread)
     {
         $this->authorize($thread);
-        $thread->toggleLock();
+        $thread->toggleLock($request->input('body'));
         return redirect()->route('thread.show', [$thread]);
     }
 
@@ -157,10 +157,11 @@ class ThreadController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function block(Thread $thread)
+    public function block(Request $request, Thread $thread)
     {
         $this->authorize($thread);
-        $this->toggleBlock();
+        $this->validate($request, ['body', 'required']);
+        $thread->toggleBlock($request->input('body'));
         return redirect()->route('thread.show', [$thread]);
     }
 

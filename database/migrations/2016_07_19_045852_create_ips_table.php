@@ -12,11 +12,18 @@ class CreateIpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ip_user', function (Blueprint $table) {
+        Schema::create('ips', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
             $table->string('ip', 45);
             $table->timestamps();
+        });
+
+        Schema::create('ip_user', function(Blueprint $table){
+            $table->integer('ip_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->timestamps();
+
+            $table->primary(['ip_id', 'user_id']);
         });
     }
 
@@ -28,5 +35,6 @@ class CreateIpsTable extends Migration
     public function down()
     {
         Schema::drop('ip_user');
+        Schema::drop('ips');
     }
 }

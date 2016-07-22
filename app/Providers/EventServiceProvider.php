@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\ThreadViewedEvent' => [
             'App\Listeners\ThreadViewedListener'
+        ],
+        'App\Events\ModerationActionEvent' => [
+            'App\Listeners\ModerationActionListener'
         ]
     ];
 

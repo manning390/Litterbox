@@ -25,6 +25,13 @@ class Post extends Model
     protected $dates = ['deleted_at'];
 
     /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['thread'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

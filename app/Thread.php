@@ -5,9 +5,11 @@ namespace App;
 use DB;
 use Auth;
 use App\Enums\PointType;
+use App\Enums\ActionType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Events\ModerationActionEvent;
 
 class Thread extends Model
 {
@@ -174,7 +176,8 @@ class Thread extends Model
     /**
      * Helper method to toggle Pinning a Thread
      */
-    public function togglePin(){
+    public function togglePin(string $reason = ''){
+        event(new ModerationActionEvent(Auth::user(), ActionType::ThreadPin, $reason));
         return $this->pinned ? $this->unpin() : $this->pin();
     }
 

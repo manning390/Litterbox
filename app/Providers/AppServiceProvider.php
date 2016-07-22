@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use Validator;
+use App\Enums\BanType;
 use App\Enums\Enum;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
             $pattern = '/^#?[a-fA-F0-9]{3,6}$/';
             return (boolean) preg_match($pattern, $value);
         });
+        Relation::morphMap(BanType::$morphMap);
     }
 
     /**

@@ -122,6 +122,13 @@ class User extends Authenticatable
     }
 
     /**
+     * User has many Bans
+     */
+    public function bans(){
+        return $this->morphToMany(Ban::class, 'bannable');
+    }
+
+    /**
      * Many Users have many Badges
      */
     public function badges(){
@@ -183,17 +190,7 @@ class User extends Authenticatable
      * @return Collection
      */
     public function ips(){
-        return DB::table(self::$ip_table)->where('user_id', $this->id)->get();
-    }
-
-    /**
-     * Adds an Ip to the $ip_table
-     * @param string
-     * @return bool
-     */
-    public function addIp($ip){
-        if(DB::table(self::$ip_table)->where('user_id', $this->id)->where('ip', $ip)->exists()) return true;
-        return DB::table(self::$ip_table)->insert(['user_id' => $this->id, 'ip' => $ip]);
+        return $this->belongsToMany(Ip::class)->withTimestamps();
     }
 
     /**
