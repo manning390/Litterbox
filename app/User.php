@@ -135,21 +135,22 @@ class User extends Authenticatable
         return $this->belongsToMany(self::class, 'friends', 'from_id', 'to_id');
     }
 
-    public function friends(){
-
-    }
-
     /**
      * Returns list of confirmed friends
      *
      * @return Collection
      */
-    public function friends(){
-        // SELECT A.to_id as friends FROM friends A JOIN friends B ON B.from_id = A.to_id WHERE A.id <> B.id AND A.from_id = B.to_id AND A.from_id = 1;
-        return DB::table('friends AS A')->select('A.to_id as friends')->join('friends AS B', 'B.from_id', '=', 'A.to_id')->where('A.id', '<>', 'B.id')->where('A.from_id', 'B.to_id')->where('A.from_id', $this->id)->get();
-        // ->transform(function($item){
-        //     return self::find($item);
-        // });
+    public function getFriendsAttribute(){
+        return collect(DB::table('friends as A')
+            ->select('A.to_id')
+            ->join('friends AS B', function($query) {
+                $query->on('A.id', '<>', 'B.id')
+                    ->on('A.from_id', '=', 'B.to_id')
+                    ->on('B.from_id', '=', 'A.to_id');
+            })->where('A.from_id', $this->id)->get())
+            ->transform(function($item){
+                return self::find($item);
+            });
     }
 
     // /**
