@@ -47,6 +47,7 @@ Route::get('users/{username}', 'UserController@show')->name('user.show');
 Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'namespace' => 'Admin'], function(){
 
     Route::resource('badge', 'BadgeController');
+    Route::resource('flag', 'FlagController', ['only' => ['index', 'update']]);
     Route::group(['as'=>'admin.'], function(){
         Route::post('/{user}/assume', 'AdminController@assume')->name('assume');
         Route::get('/announce', 'AdminController@announce')->name('announce');
