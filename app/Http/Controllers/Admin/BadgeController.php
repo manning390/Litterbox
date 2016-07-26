@@ -12,7 +12,7 @@ class BadgeController extends Controller
 
     public function __construct(){
         parent::__construct();
-        $this->middleware('can:manage_badges', ['except'=>['index','show']]);
+        $this->middleware('can:manage_badges', ['except' => ['index','show']]);
     }
 
     /**
@@ -54,7 +54,7 @@ class BadgeController extends Controller
 
         $badge->update(['filename' => $file->getFilename().'.'.$extension]);
 
-        Storage::disk('public')->put(Badge::$badgeDir.$badge->filename, File::get($file));
+        Storage::disk('public')->put(Badge::$badgeDir . $badge->filename, File::get($file));
 
         return redirect()->route('badge.show', [$badge]);
     }
