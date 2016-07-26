@@ -115,13 +115,6 @@ class User extends Authenticatable
     }
 
     /**
-     * User creates many Tags
-     */
-    public function tags(){
-        return $this->hasMany(Tag::class);
-    }
-
-    /**
      * User has many Bans
      */
     public function bans(){
