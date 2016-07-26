@@ -67,7 +67,7 @@ class BadgeController extends Controller
      */
     public function show(Badge $badge)
     {
-        // return view('badge.show', [$badge]);
+        return view('badge.show', [$badge]);
     }
 
     /**
@@ -78,7 +78,7 @@ class BadgeController extends Controller
      */
     public function edit(Badge $badge)
     {
-        // return view('badge.edit', compact('badge'));
+        return view('badge.edit', [$badge]);
     }
 
     /**
@@ -88,9 +88,9 @@ class BadgeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Badge $id)
+    public function update(Request $request, Badge $badge)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -99,8 +99,10 @@ class BadgeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Badge $id)
+    public function destroy(Badge $badge)
     {
-        //
+        Storage::disk('public')->delete(Badge::$badgeDir . $badge->filename);
+        $badge->delete();
+        return redirect()->route('badge.index')->flash('success', "Successfully deleted $badge->name");
     }
 }
