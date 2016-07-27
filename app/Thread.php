@@ -6,10 +6,10 @@ use DB;
 use Auth;
 use App\Enums\PointType;
 use App\Enums\ActionType;
+use App\Events\ModerationActionEvent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Events\ModerationActionEvent;
 
 class Thread extends Model
 {
@@ -50,6 +50,16 @@ class Thread extends Model
      * @var string
      */
     private static $likes_table = 'thread_likes';
+
+    // Global filter causes issues loading resource routes
+    // session middleware not ran till after bindings so defaults to false
+    // public static function boot(){
+    //     parent::boot();
+
+    //     static::addGlobalScope('nsfw', function(Builder $builder){
+    //         $builder->nsfwFilter();
+    //     });
+    // }
 
     /**
      * Save a new Thread with related models and return the instance.
