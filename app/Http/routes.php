@@ -58,4 +58,5 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'na
 
 // Root Routes
 Route::post('/announce/{announcement}/dismiss', 'HomeController@dismiss')->name('dismiss');
+Route::get('tags', 'HomeController@tags')->name('tags');
 Route::get('/', 'HomeController@index')->name('home');

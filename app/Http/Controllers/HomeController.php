@@ -21,6 +21,11 @@ class HomeController extends Controller
         return view('home', compact('bumped', 'new'));
     }
 
+    public function tags(){
+        $tags = Tag::all();
+        return view('tags', compact('tags'));
+    }
+
     public function dismiss(Announcement $announcement){
         $announcement->dismiss();
         return response()->json();
