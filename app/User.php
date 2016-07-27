@@ -48,12 +48,12 @@ class User extends Authenticatable
     /**
      * The path to the folder avys are saved
      */
-    protected $avatarPath = 'img/avys';
+    public static $avatarPath = 'avatars/';
 
     /**
      * The default photo if an avatar isn't set
      */
-    protected $defaultAvatar = 'no_avatar.gif';
+    protected $defaultAvatar = 'defaultAvatar.gif';
 
     /**
      * The default structure of the options json.
@@ -196,6 +196,6 @@ class User extends Authenticatable
     }
 
     public function getAvatarAttribute(){
-        return $this->avatarPath . $this->avatar ?? $this->defaultAvatar;
+        return self::$avatarPath . $this->avatar ?? $this->defaultAvatar;
     }
 }
