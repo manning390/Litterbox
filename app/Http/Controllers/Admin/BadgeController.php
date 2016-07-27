@@ -45,7 +45,7 @@ class BadgeController extends Controller
     public function store(StoreBadgeRequest $request)
     {
         $file = $request->file('image');
-        $extension = $file->getClinetOriginalExtension();
+        $extension = $file->getClientOriginalExtension();
 
         $badge = new Badge;
         $badge->name = $request->input('name');
