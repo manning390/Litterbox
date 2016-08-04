@@ -21,8 +21,8 @@ class FlagController extends Controller
      */
     public function index(){
         $flags = Flag::with(['post', 'post.thread', 'user'])->orderBy('type')->get()->groupBy('status');
-        $types = collect(FlagType::getKeys())->flip();
-        $statuses = collect(FlagStatusType::getKeys())->flip();
+        $types = FlagType::getKeysInverse();
+        $statuses = FlagStatusType::getKeysInverse();
         return view('admin.flag.index', compact('flags', 'types', 'statuses'));
     }
 

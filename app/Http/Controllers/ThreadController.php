@@ -62,7 +62,7 @@ class ThreadController extends Controller
     public function show(Thread $thread)
     {
         $posts = $thread->rootPosts()->paginate();
-        $syntaxes = collect(SyntaxType::getKeys())->flip();
+        $syntaxes = SyntaxType::getKeysInverse();
         return view('thread.show', compact('thread', 'posts', 'syntaxes'));
     }
 

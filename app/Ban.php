@@ -28,4 +28,5 @@ class Ban extends Model
     public function actions(){
         return $this->hasMany(Action::class);
     }
+
 }

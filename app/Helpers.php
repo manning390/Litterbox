@@ -3,7 +3,9 @@
 if(!function_exists('realTitleCase')){
     function realTitleCase($str){
         // These words will not be capitalized
-        $smallwords = ['of','a','the','and','an','or','nor','but','is','if','then','else','when', 'at','from','by','on','off','for','in','out','over','to','into','with'];
+        $smallwords = [
+            'of','a','the','and','an','or','nor','but','is','if','then','else','when', 'at','from','by','on','off','for','in','out','over','to','into','with'
+        ];
         // Trim whitespace off front and end
         $str = trim($str);
         // Convert any whitespace to single underscores
@@ -17,11 +19,11 @@ if(!function_exists('realTitleCase')){
         // Iterate through words
         foreach ($words as $key => $word)
         {
-        // If this word is the first, or it's not one of our small words, capitalize it with ucwords
-        if ($key == 0 or !in_array($word, $smallwords))
-            $words[$key] = ucwords($word);
+            // If this word is the first, or it's not one of our small words, capitalize it with ucwords
+            if ($key == 0 or !in_array($word, $smallwords))
+                $words[$key] = ucwords($word);
         }
         // Convert back to string and return
-        return implode(' ', $words);
+        return trim(implode(' ', $words));
     }
 }

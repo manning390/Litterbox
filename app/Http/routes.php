@@ -12,9 +12,8 @@
 */
 
 Route::get('test', function(){
-    $b = \App\Badge::find(1);
-    dd($b->path);
-    return view('test')->withBadge($b);
+    dd(realTitleCase('This_is_test'));
+    return 'test';
 });
 
 // Login Routes...
@@ -46,6 +45,7 @@ Route::get('users/{username}', 'UserController@show')->name('user.show');
 
 Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'namespace' => 'Admin'], function(){
 
+    Route::resource('ban', 'BanController');
     Route::resource('badge', 'BadgeController');
     Route::resource('flag', 'FlagController', ['only' => ['index', 'update']]);
     Route::group(['as'=>'admin.'], function(){
