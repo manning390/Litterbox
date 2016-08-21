@@ -16,6 +16,8 @@ class CreateModerationTables extends Migration
         Schema::create('bans', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamp('expires')->nullable();
+            $table->enum('type', BanType::getKeys());
+            $table->json('meta');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,11 +32,17 @@ class CreateModerationTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('bannable', function(Blueprint $table){
+        Schema::create('bannables', function(Blueprint $table){
             $table->integer('ban_id')->unsigned();
             $table->integer('bannable_id')->unsigned();
-            $table->enum('type', BanType::getKeys());
+            $table->string('bannable_type');
+
+            $table->foreign('ban_id')
+                ->references('id')
+                ->on('bans')
+                ->onDelete('cascade');
         });
+
     }
 
     /**
@@ -44,7 +52,7 @@ class CreateModerationTables extends Migration
      */
     public function down()
     {
-        Schema::drop('bannable');
+        Schema::drop('bannables');
         Schema::drop('actions');
         Schema::drop('bans');
     }

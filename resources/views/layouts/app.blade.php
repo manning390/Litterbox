@@ -52,7 +52,7 @@
                     @if($user)
                         <li><a href="http://chat.thecolorless.net/#/channel/main">Chat</a></li>
                     @endif
-                    <li><a href="{{ route('tags') }}">Tags</a></li>
+                    <li><a href="{{ route('home.tags') }}">Tags</a></li>
                     <li><a href="{{-- route('guide') --}}">Guide</a></li>
                     @if($user)
                         <li><a href="{{ route('auth.logout') }}">Sign out</a></li>

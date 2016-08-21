@@ -2,17 +2,17 @@ Administration:
  ☐ Announcements @started @explain
  ☐ Lockable avatar
  ✔ IP lists @done (16-07-18 23:05)
- ☐ Linked account names
+ ☐ Linked account names @started @ux
  ☐ Bans @started
-   ☐ Time Bans
-   ☐ IP Bans
-   ☐ Shadow Bans
- ☐ Manage Flags
+   ✔ Time Bans @done (16-08-21 14:56)
+   ☐ IP Bans @started
+   ☐ Shadow Bans @started
+ ☐ Manage Flags @ux
 
 Forum Filters:
  ✔ NSFW @done (16-07-16 16:09)
  ✔ Bumped @done (16-07-16 16:09)
- ☐ Popular @started
+ ☐ Popular @started @explain
 
 Logging:
  ☐ Log Paypal donations
@@ -21,26 +21,27 @@ Forum:
  ✔ Being able to change between Markdown/BBcode before a post is submitted @done (16-07-09 22:25)
  ✔ Thread and Post creation/Updating @done (16-07-10 14:30)
  ✔ Post Permalinks @done (16-07-10 14:30)
- ☐ Youtube Embed
- ☐ Twitter Embed
+ ☐ Youtube Embed @ux
+ ☐ Twitter Embed @ux
  ✔ Flags  @done (16-07-19 12:50)
 
 Friend System:
- ☐ Friend System @started
+ ✔ Friend System @done (16-08-21 15:00)
+ ☐ Friend Chat/Messaging @explain
 
 Profiles:
- ☐ Upload profile pictures @started
+ ✔ Upload profile pictures @done (16-08-21 14:57)
  ☐ Titles @explain @ux
- ☐ Daily Dice Roll @explain
+ ✘ Daily Dice Roll @cancelled (16-08-21 14:58)
  ✔ Badges @done (16-07-10 00:37)
  ☐ Posts / Threads @ux
- ☐ Badge organization
+ ☐ Badge organization @!neko
 
 Reputation System:
- ☐ Reputation Attribute @started
+ ✔ Reputation Attribute @done (16-08-21 14:59)
  ☐ Ban removing rep
  ☐ Ban without removing rep
- ☐ Votes add rep (20% max) @started
- ☐ Posts add rep @started
- ☐ Threads add rep (heavier than posts) @started
- ☐ Decay on no login
+ ☐ Votes add rep (20% max) @started @explain
+ ☐ Posts add rep @started @explain
+ ☐ Threads add rep (heavier than posts) @started @explain
+ ☐ Decay on no login @explain

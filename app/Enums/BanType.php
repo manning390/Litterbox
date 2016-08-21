@@ -12,6 +12,11 @@ class BanType extends Enum{
     const ProfileBan = 'profileBan';
 
     public static $morphMap = [
+        'user' => \App\User::class,
+        'ip' => \App\Ip::class,
+    ];
+
+    public static $typeMap = [
         self::UserBan => \App\User::class,
         self::IpBan  => \App\Ip::class,
         self::ThreadBan => \App\User::class,

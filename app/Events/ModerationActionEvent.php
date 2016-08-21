@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Ban;
+use App\User;
 use App\Events\Event;
 use App\Enums\ActionType;
 use Illuminate\Queue\SerializesModels;
@@ -21,8 +23,9 @@ class ModerationActionEvent extends Event
      *
      * @return void
      */
-    public function __construct(User $user, ActionType $type, string $body, Ban $ban = null)
+    public function __construct(User $user, string $type, string $body, Ban $ban = NULL)
     {
+        if(!ActionType::isValidValue($type)) throw new EnumException("Argument is not a valid value for expected Enum.");
         $this->user = $user;
         $this->type = $type;
         $this->body = $body;

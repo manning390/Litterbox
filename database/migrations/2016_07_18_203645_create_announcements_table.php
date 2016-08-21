@@ -17,6 +17,7 @@ class CreateAnnouncementsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->text('body');
+            $table->boolean('global')->default(false);
             $table->timestamps();
         });
 

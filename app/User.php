@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use App\Enums\BanType;
 use App\Enums\PointType;
 use App\Enums\SyntaxType;
 use Eloquent\Dialect\Json;
@@ -32,7 +33,7 @@ class User extends Authenticatable
     ];
 
     /**
-     *
+     * The attributes that should be cast to Carbon
      */
     protected $dates = [
         'deleted_at', 'login_at'
@@ -176,6 +177,20 @@ class User extends Authenticatable
      */
     public function minusPoints(PointType $points){
         return $this->addPoints(-$points);
+    }
+
+    public function banned($bans){
+        if(!is_array($bans)) $bans = [$bans];
+
+        $usersBanTypes = $this->bans->pluck('pivot.type');
+
+        foreach($bans as $ban){
+            if(!BanType::isValidValue($ban))
+                throw new Exceptions\EnumException("Argument is not a valid value for expected Enum.");
+            if($usersBanTypes->contains($ban))
+                return true;
+        }
+        return false;
     }
 
     /**

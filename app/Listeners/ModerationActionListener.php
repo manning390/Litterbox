@@ -2,6 +2,8 @@
 
 namespace App\Listeners;
 
+use App\Action;
+use App\Enums\ActionType;
 use App\Events\ModerationActionEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -19,7 +21,8 @@ class ModerationActionListener implements ShouldQueue
         $action = new Action;
         $action->name = ActionType::getKey($event->type);
         $action->body = $event->body;
+        $action->user()->associate($event->user);
+        $action->ban()->associate($event->ban);
         $action->save();
-        $action->associate($event->user)->associate($event->ban);
     }
 }

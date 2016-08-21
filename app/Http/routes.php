@@ -12,7 +12,10 @@
 */
 
 Route::get('test', function(){
-    dd(realTitleCase('This_is_test'));
+    \Auth::loginUsingId(1);
+    dd(App\User::find(3)->bans);
+    // \App\Ban::apply(\App\User::find(3), \App\Enums\BanType::ThreadBan, 'Cause I can', \Carbon\Carbon::parse('last week'));
+    dd(\App\Enums\BanType::ThreadBan, \App\User::find(3)->bans, \App\User::find(3)->bans->pluck('bannable_type'));
     return 'test';
 });
 
@@ -58,5 +61,6 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'na
 
 // Root Routes
 Route::post('/announce/{announcement}/dismiss', 'HomeController@dismiss')->name('dismiss');
-Route::get('tags', 'HomeController@tags')->name('tags');
+Route::get('tags', 'HomeController@tags')->name('home.tags');
+Route::get('about', 'HomeController@about')->name('home.about');
 Route::get('/', 'HomeController@index')->name('home');

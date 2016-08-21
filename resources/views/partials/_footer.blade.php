@@ -2,7 +2,7 @@
     <section>
         <h4>Navigation</h4>
         <ul class="square pages-list">
-            <li><a href="{{-- about --}}">About</a></li>
+            <li><a href="{{ route('home.about') }}">About</a></li>
             <li><a href="{{-- faq --}}">FAQ</a></li>
             <li><a href="{{-- privacy --}}">Privacy Policy</a></li>
             <li><a href="{{-- rules --}}">Rules</a></li>

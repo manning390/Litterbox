@@ -14,7 +14,7 @@ class Action extends Model
     }
 
     public function ban(){
-        return $this->belongsto(Ban::class);
+        return $this->belongsTo(Ban::class);
     }
 
 }

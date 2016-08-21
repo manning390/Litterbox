@@ -11,15 +11,15 @@ class ThreadPolicy
     use HandlesAuthorization;
 
     public function edit(User $user, Thread $thread){
-        return $user->owns($thread) || $user->can('edit_forum');
+        return ($user->owns($thread) && !$user->banned(BanType::ThreadBan) ) || $user->can('edit_forum');
     }
 
     public function update(User $user, Thread $thread){
-        return $user->owns($thread) || $user->can('edit_forum');
+        return ($user->owns($thread) && !$user->banned(BanType::ThreadBan) ) || $user->can('edit_forum');
     }
 
     public function destroy(User $user, Thread $thread){
-        return $user->owns($thread) || $user->can('delete_forum');
+        return ($user->owns($thread) && !$user->banned(BanType::ThreadBan) ) || $user->can('delete_forum');
     }
 
     public function restore(User $user, Thread $thread){
@@ -31,7 +31,7 @@ class ThreadPolicy
     }
 
     public function lock(User $user, Thread $thread){
-        return $user->owns($post) || $user->can('lock_forum');
+        return ($user->owns($post) && !$user->banned(BanType::ThreadBan) ) || $user->can('lock_forum');
     }
 
     public function block(User $user, Thread $thread){
