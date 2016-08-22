@@ -4,11 +4,16 @@ namespace App\Policies;
 
 use App\User;
 use App\Thread;
+use App\Enums\BanType;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ThreadPolicy
 {
     use HandlesAuthorization;
+
+    public function store(User $user){
+        return $user->banned(BanType::ThreadBan);
+    }
 
     public function edit(User $user, Thread $thread){
         return ($user->owns($thread) && !$user->banned(BanType::ThreadBan) ) || $user->can('edit_forum');

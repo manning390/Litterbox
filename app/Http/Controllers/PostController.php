@@ -24,6 +24,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+        $this->authorize();
         $post = Post::create($request->all())->associateUser(Auth::user());
         return redirect()->route('thread.show', [$post]);
     }

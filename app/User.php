@@ -154,15 +154,15 @@ class User extends Authenticatable
             });
     }
 
-    // /**
-    //  * Inserts one direction friendship into Friends table
-    //  *
-    //  * @param \App\User
-    //  * @return bool
-    //  */
-    // public function addFriend(User $to){
-    //     return DB::table('friends')->insert(['from_id' => $this->id, 'to_id' => $to->id, "created_at" =>  \Carbon\Carbon::now(), "updated_at" => \Carbon\Carbon::now()]);
-    // }
+    /**
+     * Inserts one direction friendship into Friends table
+     *
+     * @param \App\User
+     * @return bool
+     */
+    public function addFriend(User $to){
+        return DB::table('friends')->insert(['from_id' => $this->id, 'to_id' => $to->id, "created_at" =>  \Carbon\Carbon::now(), "updated_at" => \Carbon\Carbon::now()]);
+    }
 
     /**
      * Add Points using PointType
