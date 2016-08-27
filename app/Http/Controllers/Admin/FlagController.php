@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 class FlagController extends Controller
 {
     public function __construct() {
-        parent::__construct();
         $this->middleware('can:manage_flags', ['except' => ['index']]);
     }
 

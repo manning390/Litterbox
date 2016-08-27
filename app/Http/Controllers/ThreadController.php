@@ -15,7 +15,6 @@ class ThreadController extends Controller
 {
 
     public function __construct(){
-        parent::__construct();
         $this->middleware('auth', ['except' => ['index','show']]);
         $this->middleware('thread.view', ['only' => 'show']);
     }

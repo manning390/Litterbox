@@ -11,7 +11,6 @@ class BadgeController extends Controller
 {
 
     public function __construct(){
-        parent::__construct();
         $this->middleware('can:manage_badges', ['except' => ['index','show']]);
     }
 

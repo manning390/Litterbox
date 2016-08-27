@@ -13,10 +13,6 @@ use App\Http\Controllers\Controller;
 class BanController extends Controller
 {
 
-    public function __construct()
-    {
-
-    }
     /**
      * Display a listing of the resource.
      *
