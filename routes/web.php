@@ -20,18 +20,19 @@ Route::get('test', function(){
 });
 
 // Login Routes...
-Route::get('login', 'Auth\AuthController@showLoginForm')->name('auth.login');
-Route::post('login', 'Auth\AuthController@login');
-Route::get('logout', 'Auth\AuthController@logout')->name('auth.logout');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 // Registration Routes...
-Route::get('register', 'Auth\AuthController@showRegistrationForm')->name('auth.register');
-Route::post('register', 'Auth\AuthController@register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('auth.register');
+Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
-Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-Route::post('password/reset', 'Auth\PasswordController@reset');
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Forum Controllers
 Route::resource('thread', 'ThreadController');

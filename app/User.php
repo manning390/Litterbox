@@ -7,12 +7,15 @@ use App\Enums\BanType;
 use App\Enums\PointType;
 use App\Enums\SyntaxType;
 use Eloquent\Dialect\Json;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class User extends Authenticatable
 {
     use Json;
     use HasRoles;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -142,13 +145,13 @@ class User extends Authenticatable
      * @return Collection
      */
     public function getFriendsAttribute(){
-        return collect(DB::table('friends as A')
+        return DB::table('friends as A')
             ->select('A.to_id')
-            ->join('friends AS B', function($query) {
-                $query->on('A.id', '<>', 'B.id')
-                    ->on('A.from_id', '=', 'B.to_id')
-                    ->on('B.from_id', '=', 'A.to_id');
-            })->where('A.from_id', $this->id)->get())
+            ->join('friends AS B', function($join) {
+                $join->on('A.id', '<>', 'B.id')
+                    ->where('A.from_id', '=', 'B.to_id')
+                    ->where('B.from_id', '=', 'A.to_id');
+            })->where('A.from_id', $this->id)->get()
             ->transform(function($item){
                 return self::find($item);
             });
