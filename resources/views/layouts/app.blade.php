@@ -49,12 +49,12 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('home') }}">Front page</a></li>
-                    @if($user)
+                    @if(Auth::check())
                         <li><a href="http://chat.thecolorless.net/#/channel/main">Chat</a></li>
                     @endif
                     <li><a href="{{ route('home.tags') }}">Tags</a></li>
                     <li><a href="{{-- route('guide') --}}">Guide</a></li>
-                    @if($user)
+                    @if(Auth::check())
                         <li><a href="{{ route('auth.logout') }}">Sign out</a></li>
                     @else
                         <li><a href="{{ route('auth.login') }}">Login</a></li>
