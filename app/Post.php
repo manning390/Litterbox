@@ -7,12 +7,13 @@ use BBCode;
 use Markdown;
 use App\Enums\PointType;
 use App\Enums\SyntaxType;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-
+    use Searchable;
     use SoftDeletes{
         restore as baseRestore;
     }

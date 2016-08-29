@@ -162,7 +162,8 @@ return [
          */
         Unicodeveloper\DumbPassword\DumbPasswordServiceProvider::class,
         Golonka\BBCode\BBCodeParserServiceProvider::class,
-        GrahamCampbell\Markdown\MarkdownServiceProvider::class
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
 
 
     ],

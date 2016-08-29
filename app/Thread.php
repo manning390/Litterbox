@@ -6,6 +6,7 @@ use DB;
 use Auth;
 use App\Enums\PointType;
 use App\Enums\ActionType;
+use Laravel\Scout\Searchable;
 use App\Events\ModerationActionEvent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Thread extends Model
 {
 
+    use Searchable;
     use Lockable;
     use SoftDeletes {
         restore as baseRestore;
