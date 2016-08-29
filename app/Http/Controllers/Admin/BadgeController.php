@@ -56,7 +56,7 @@ class BadgeController extends Controller
 
         Storage::disk('public')->put(Badge::$badgeDir . $badge->filename, File::get($file));
 
-        return redirect()->route('badge.show', [$badge]);
+        return redirect()->route('badge.show', [$badge])->flash('success', "Successfully created $badge->label.");
     }
 
     /**
@@ -88,9 +88,10 @@ class BadgeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Badge $badge)
+    public function update(UpdateBadgeRequest $request, Badge $badge)
     {
-        dd($request);
+        $badge->update($request->all());
+        return redirect()->route('badge.show', [$badge])->flash('success', "Successfully updated $badge->label.");
     }
 
     /**
@@ -103,6 +104,6 @@ class BadgeController extends Controller
     {
         Storage::disk('public')->delete(Badge::$badgeDir . $badge->filename);
         $badge->delete();
-        return redirect()->route('badge.index')->flash('success', "Successfully deleted $badge->name");
+        return redirect()->route('badge.index')->flash('success', "Successfully deleted $badge->label.");
     }
 }

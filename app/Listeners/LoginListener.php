@@ -21,6 +21,7 @@ class LoginListener
         $ip = Ip::firstOrCreate(['ip' => request()->ip()]);
         if(!$event->user->ips->contains($ip))
             $event->user->ips()->attach($ip);
-        $event->user->update(['login_at' => Carbon::now()]);
+        $event->user->login_at = Carbon::now();
+        $event->user->save();
     }
 }
