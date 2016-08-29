@@ -28,6 +28,11 @@ class HomeController extends Controller
         return view('tags', compact('tags'));
     }
 
+    public function about()
+    {
+        return view('about');
+    }
+
     public function dismiss(Announcement $announcement){
         $announcement->dismiss();
         return response()->json();

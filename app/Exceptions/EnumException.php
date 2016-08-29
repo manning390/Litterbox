@@ -4,4 +4,4 @@ namespace App\Exceptions;
 
 use Exception;
 
-abstract class EnumException extends Exception{}
+class EnumException extends Exception{}

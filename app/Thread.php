@@ -6,6 +6,7 @@ use DB;
 use Auth;
 use App\Enums\PointType;
 use App\Enums\ActionType;
+use Laravel\Scout\Searchable;
 use App\Events\ModerationActionEvent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Thread extends Model
 {
 
+    use Searchable;
     use Lockable;
     use SoftDeletes {
         restore as baseRestore;
@@ -50,16 +52,6 @@ class Thread extends Model
      * @var string
      */
     private static $likes_table = 'thread_likes';
-
-    // Global filter causes issues loading resource routes
-    // session middleware not ran till after bindings so defaults to false
-    // public static function boot(){
-    //     parent::boot();
-
-    //     static::addGlobalScope('nsfw', function(Builder $builder){
-    //         $builder->nsfwFilter();
-    //     });
-    // }
 
     /**
      * Save a new Thread with related models and return the instance.
@@ -139,7 +131,7 @@ class Thread extends Model
 
     public function scopeNsfwFilter($query){
         $query->where('nsfw', false) // Always show all nsfw false threads
-            ->orWhere('nsfw', Auth::user()->nsfw ?? false); // Show Users preference
+            ->orWhere('nsfw', Auth::check()? Auth::user()->nsfw : false); // Show Users preference
     }
 
     /**

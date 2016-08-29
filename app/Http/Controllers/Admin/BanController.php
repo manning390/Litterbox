@@ -6,16 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Ban;
 use App\Action;
+use Carbon\Carbon;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class BanController extends Controller
 {
 
-    public function __construct()
-    {
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -45,20 +42,12 @@ class BanController extends Controller
      */
     public function store(Request $request)
     {
-        // Create the ban
-        $ban = new Ban;
-        $ban->expires = $request->expires ?? null;
-
         // Format all those affected by the ban
         $bannables = is_arary($request->bannable)? $request->bannable : [$request->bannable];
-        // Find all those affected by the ban and apply the ban
-        foreach($bannables as $bannable){
-            $bannable = BanType::$morphMap[$request->type]::findOrFail($bannable);
-            $bannable->bans()->save($ban);
-        }
 
-        // Report the Moderation Action
-        event(new ActionEvent(Auth::user(), $request->type, $request->reason, $ban));
+        // Find all those affected by the ban and apply the ban
+        foreach($bannables as $bannable)
+            Ban::apply($bannable, $request->type, $request->reason, $request->expires);
 
         return redirect()->route('admin.ban.show', [$ban])->flash('success', "Ban has successfully been created.");
     }
@@ -94,14 +83,14 @@ class BanController extends Controller
      */
     public function update(Request $request, Ban $ban)
     {
-        $ban->expires = $request->expires ?? null;
-        // Format all those affected by the ban
-        $bannables = is_arary($request->bannable)? $request->bannable : [$request->bannable];
-        // Find all those affected by the ban and apply the ban
-        foreach($bannables as $bannable){
-            $bannable = BanType::$morphMap[$request->type]::findOrFail($bannable);
-            $bannable->bans()->save($ban);
-        }
+        // $ban->expires = $request->expires ?? null;
+        // // Format all those affected by the ban
+        // $bannables = is_arary($request->bannable)? $request->bannable : [$request->bannable];
+        // // Find all those affected by the ban and apply the ban
+        // foreach($bannables as $bannable){
+        //     $bannable = BanType::$morphMap[$request->type]::findOrFail($bannable);
+        //     $bannable->bans()->save($ban);
+        // }
     }
 
     /**
@@ -113,6 +102,6 @@ class BanController extends Controller
     public function destroy(Ban $Ban)
     {
         $ban->delete();
-        return redirect(->route('admin.ban.index')->flash('success', 'Ban has been successfully lifted.');
+        return redirect()->route('admin.ban.index')->flash('success', 'Ban has been successfully lifted.');
     }
 }

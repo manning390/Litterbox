@@ -12,7 +12,6 @@ class PostController extends Controller
 {
 
     public function __construct(){
-        parent::__construct();
         $this->middleware('auth', ['except' => 'show']);
     }
 
@@ -24,6 +23,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+        $this->authorize();
         $post = Post::create($request->all())->associateUser(Auth::user());
         return redirect()->route('thread.show', [$post]);
     }

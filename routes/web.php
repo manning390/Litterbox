@@ -12,23 +12,27 @@
 */
 
 Route::get('test', function(){
-    dd(realTitleCase('This_is_test'));
+    \Auth::loginUsingId(1);
+    dd(App\User::find(3)->bans);
+    // \App\Ban::apply(\App\User::find(3), \App\Enums\BanType::ThreadBan, 'Cause I can', \Carbon\Carbon::parse('last week'));
+    dd(\App\Enums\BanType::ThreadBan, \App\User::find(3)->bans, \App\User::find(3)->bans->pluck('bannable_type'));
     return 'test';
 });
 
 // Login Routes...
-Route::get('login', 'Auth\AuthController@showLoginForm')->name('auth.login');
-Route::post('login', 'Auth\AuthController@login');
-Route::get('logout', 'Auth\AuthController@logout')->name('auth.logout');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 // Registration Routes...
-Route::get('register', 'Auth\AuthController@showRegistrationForm')->name('auth.register');
-Route::post('register', 'Auth\AuthController@register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('auth.register');
+Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
-Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-Route::post('password/reset', 'Auth\PasswordController@reset');
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Forum Controllers
 Route::resource('thread', 'ThreadController');
@@ -58,5 +62,6 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'can:view_admin'], 'na
 
 // Root Routes
 Route::post('/announce/{announcement}/dismiss', 'HomeController@dismiss')->name('dismiss');
-Route::get('tags', 'HomeController@tags')->name('tags');
+Route::get('tags', 'HomeController@tags')->name('home.tags');
+Route::get('about', 'HomeController@about')->name('home.about');
 Route::get('/', 'HomeController@index')->name('home');

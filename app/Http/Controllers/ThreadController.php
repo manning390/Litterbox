@@ -15,7 +15,6 @@ class ThreadController extends Controller
 {
 
     public function __construct(){
-        parent::__construct();
         $this->middleware('auth', ['except' => ['index','show']]);
         $this->middleware('thread.view', ['only' => 'show']);
     }
@@ -48,6 +47,7 @@ class ThreadController extends Controller
      */
     public function store(StoreThreadRequest $request)
     {
+        $this->authorize();
         $thread = Thread::createWithPost($request->all());
         $thread->tags()->saveMany(Tag::firstOrCreateMany($request->tags));
         return redirect()->route('thread.show', [$thread]);
