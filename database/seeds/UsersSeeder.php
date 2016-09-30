@@ -23,8 +23,8 @@ class UsersSeeder extends Seeder
             //     'color' => '#ccc',
             //     'syntax' => 'm',
             //     'nsfw' => true,
-            //     'mentionsEmail' => true,
-            //     'pmsEmail' => true
+            //     'mentionsNotify' => true,
+            //     'pmsNotify' => true
             // ])
         User::create([
             'name' => "Numbers",

@@ -18,12 +18,16 @@ class DatabaseSeeder extends Seeder
         // Disable foreign key check for this connection before running seeders
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        // Run seeders
-        $this->call(UsersSeeder::class);
-        $this->call(AclSeeder::class);
-        $this->call(BadgesSeeder::class);
-        $this->call(ThreadSeeder::class);
+        // Dev seeders
+        // $this->call(UsersSeeder::class);
+        // $this->call(AclSeeder::class);
+        // $this->call(BadgesSeeder::class);
+        // $this->call(ThreadSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        // Archive Seeders
+        $this->call(UserArchiveTableSeeder::class);
+
     }
 }

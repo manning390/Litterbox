@@ -69,8 +69,8 @@ class User extends Authenticatable
         'color' => '#222223',
         'syntax' => SyntaxType::Markdown,
         'nsfw' => false,
-        'mentionsEmail' => true,
-        'pmsEmail' => true
+        'mentionsNotify' => true,
+        'pmsNotify' => true
     ];
 
     /**

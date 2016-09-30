@@ -15,8 +15,8 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function show($username){
-        $user = User::where('name', $username)->firstOrFail();
+    public function show($name){
+        $user = User::where('name', $name)->firstOrFail();
         return view('user.show', compact('user'));
     }
 
