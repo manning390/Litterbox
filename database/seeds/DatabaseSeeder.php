@@ -19,15 +19,16 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         // Dev seeders
-        // $this->call(UsersSeeder::class);
-        // $this->call(AclSeeder::class);
-        // $this->call(BadgesSeeder::class);
-        // $this->call(ThreadSeeder::class);
-
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        $this->call(UsersSeeder::class);
+        $this->call(AclSeeder::class);
+        $this->call(BadgesSeeder::class);
+        $this->call(ThreadSeeder::class);
 
         // Archive Seeders
-        $this->call(UserArchiveTableSeeder::class);
+        if(App::environment() === 'migration'){
+            $this->call(UserArchiveTableSeeder::class);
+        }
 
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

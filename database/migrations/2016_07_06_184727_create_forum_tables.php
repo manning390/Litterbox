@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\SyntaxType;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -36,7 +35,7 @@ class CreateForumTables extends Migration
             $table->integer('parent_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned();
             $table->text('body');
-            $table->enum('syntax', SyntaxType::getKeys());
+            $table->char('syntax');
             $table->softDeletes();
             $table->integer('deleted_by')->unsigned()->nullable();
             $table->timestamps();
@@ -55,6 +54,7 @@ class CreateForumTables extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 64)->unique();
+            $table->string('label');
             $table->softDeletes();
             $table->timestamps();
         });

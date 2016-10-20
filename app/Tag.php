@@ -2,17 +2,19 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tag extends Model
 {
 
+    use Searchable;
+    use SoftDeletes;
+
     protected $fillable = [
         'name', 'label'
     ];
-
-    use SoftDeletes;
 
     public function threads(){
         return $this->belongsToMany(Thread::class);
@@ -29,7 +31,7 @@ class Tag extends Model
 
         return collect($tags)->map(function($item, $key){
             $item = trim($item);
-            return self::firstOrNew(['name'=> snake_case(strtolower($item)), 'label' => $item]);
+            return self::firstOrNew(['name'=> real_snake_case($item), 'label' => $item]);
         });
     }
 }

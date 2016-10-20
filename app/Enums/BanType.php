@@ -3,13 +3,13 @@
 namespace App\Enums;
 
 class BanType extends Enum{
-    const UserBan = 'userBan';
-    const IpBan = 'ipBan';
-    const ThreadBan = 'threadBan';
-    const ShadowBan = 'shadowBan';
-    const ChatBan = 'chatBan';
-    const MuteBan = 'chatMute';
-    const ProfileBan = 'profileBan';
+    const UserBan = 1;
+    const IpBan = 2;
+    const ThreadBan = 3;
+    const ShadowBan = 4;
+    const ChatBan = 5;
+    const MuteBan = 6;
+    const ProfileBan = 7;
 
     public static $morphMap = [
         'user' => \App\User::class,

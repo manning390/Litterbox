@@ -4,6 +4,7 @@ namespace App;
 
 use DB;
 use Auth;
+use App\Poll\Poll;
 use App\Enums\PointType;
 use App\Enums\ActionType;
 use Laravel\Scout\Searchable;

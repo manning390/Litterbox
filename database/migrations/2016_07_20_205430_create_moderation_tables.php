@@ -16,7 +16,7 @@ class CreateModerationTables extends Migration
         Schema::create('bans', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamp('expires')->nullable();
-            $table->enum('type', BanType::getKeys());
+            $table->tinyInteger('type')->unsigned();
             $table->json('meta');
             $table->softDeletes();
             $table->timestamps();

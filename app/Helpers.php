@@ -27,3 +27,9 @@ if(!function_exists('realTitleCase')){
         return trim(implode(' ', $words));
     }
 }
+
+if(!function_exists('real_snake_case')){
+    function real_snake_case($str){
+        return preg_replace('/_+/', '_', snake_case(preg_replace('/(\s|-)+/', '_', $str)));
+    }
+}

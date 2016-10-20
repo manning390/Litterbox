@@ -64,8 +64,8 @@ class ForumArchiveTableSeeder extends Seeder {
                     'title' => $post->title,
                     'locked_at' => $post->status == 1? Carbon::now() : null,
                     'blocked_at' => $post->status == 2? Carbon::now() : null,
-                    'nsfw' => $post->meta->nsfw? true: false,
-                    'link'=> $post->link != null? $post->link->url ? null,
+                    'nsfw' => $post->meta->nsfw? true : false,
+                    'link'=> $post->link != null? $post->link->url : null,
                 ]);
                 $poll = PollArchive::where('id'=>$post->id);
                 if($poll->exists()){

@@ -27,7 +27,7 @@
     </style>
 </head>
 <body id="app-layout">
-    @include('partials._navigation')
+    {{-- @include('partials._navigation') --}}
     <div class="container">
         @yield('content')
         @include('partials._footer')

@@ -18,8 +18,8 @@ class CreateFlagsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('post_id')->unsigned();
-            $table->enum('type', FlagType::getKeys());
-            $table->enum('status', FlagStatusType::getKeys());
+            $table->tinyInteger('type')->unsigned();
+            $table->tinyInteger('status')->unsigned();
             $table->text('body');
             $table->timestamps();
         });
