@@ -214,6 +214,6 @@ class User extends Authenticatable
     }
 
     public function getAvatarAttribute(){
-        return self::$avatarPath . $this->avatar ?? $this->defaultAvatar;
+        return self::$avatarPath . ($this->avatar ?? $this->defaultAvatar);
     }
 }

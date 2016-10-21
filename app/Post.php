@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use Searchable;
     use SoftDeletes{
         restore as baseRestore;
     }

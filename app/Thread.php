@@ -54,6 +54,19 @@ class Thread extends Model
      */
     private static $likes_table = 'thread_likes';
 
+    public function toSearchableArray(){
+
+        $this->user = $this->user->pluck('id', 'name');
+
+        $this->posts = $this->posts()->with(['user' => function($query){
+            $query->select('id', 'name');
+        }])->get();
+
+        $this->tags;
+
+        return $this->toArray();
+    }
+
     /**
      * Save a new Thread with related models and return the instance.
      *
