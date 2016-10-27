@@ -81,6 +81,14 @@ class User extends Authenticatable
         $this->hintJsonStructure('options', json_encode($this->jsonStructure));
     }
 
+    public static function boot(){
+        parent::boot();
+
+        static::creating(function($user)){
+            $user->email_token = str_random(30);
+        }
+    }
+
     /**
      * Checks to see if the user owns the object passed in
      * @param  misc $relation An object the user has a relation with

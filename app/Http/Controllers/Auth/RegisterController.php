@@ -68,4 +68,14 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * Confirms the email to the user
+     *
+     * @param  String $token
+     * @return \Illuminate\Http\Response
+     */
+    protected function confirmEmail($token){
+
+    }
 }

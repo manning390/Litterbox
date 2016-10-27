@@ -18,6 +18,7 @@ class UsersSeeder extends Seeder
             'name' => "Neko-Chan",
             'email' => 'test@test.com',
             'password' => bcrypt('123456'),
+            'verified' => true,
         ]);
             // 'options' => json_encode([
             //     'color' => '#ccc',
@@ -30,11 +31,13 @@ class UsersSeeder extends Seeder
             'name' => "Numbers",
             'email' => 'yup@yup.com',
             'password' => bcrypt('123456'),
+            'verified' => true,
         ]);
         User::create([
             'name' => "Warlock",
             'email' => 'nope@nope.com',
             'password' => bcrypt('123456'),
+            'verified' => true,
         ]);
     }
 }

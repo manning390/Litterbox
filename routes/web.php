@@ -25,6 +25,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 // Registration Routes...
+Route::get('register/confirm/{token}', 'Auth\RegisterController@confirmEmail')->name('auth.confirm');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('auth.register');
 Route::post('register', 'Auth\RegisterController@register');
 

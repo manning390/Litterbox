@@ -31,7 +31,7 @@ class Tag extends Model
 
         return collect($tags)->map(function($item, $key){
             $item = trim($item);
-            return self::firstOrNew(['name'=> real_snake_case($item), 'label' => $item]);
+            return self::firstOrCreate(['name'=> real_snake_case($item), 'label' => $item]);
         });
     }
 }
