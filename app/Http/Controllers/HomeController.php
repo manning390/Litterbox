@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Tag;
 use App\Post;
 use App\Thread;
@@ -19,6 +20,7 @@ class HomeController extends Controller
     {
         $bumped = Thread::nsfwFilter()->bumped()->paginate();
         $new = Thread::nsfwFilter()->orderBy('created_at')->paginate();
+
         return view('home', compact('bumped', 'new'));
     }
 
@@ -33,8 +35,14 @@ class HomeController extends Controller
         return view('about');
     }
 
+    public function search(){
+        return 'search ?';
+    }
+
     public function dismiss(Announcement $announcement){
         $announcement->dismiss();
         return response()->json();
     }
+
+
 }

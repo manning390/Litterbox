@@ -10,7 +10,6 @@ use Eloquent\Dialect\Json;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
 class User extends Authenticatable
 {
     use Json;
@@ -19,7 +18,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -84,9 +82,9 @@ class User extends Authenticatable
     public static function boot(){
         parent::boot();
 
-        static::creating(function($user)){
-            $user->email_token = str_random(30);
-        }
+        // static::creating(function($user)) {
+        //     $user->email_token = str_random(30);
+        // }
     }
 
     /**

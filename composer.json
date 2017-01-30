@@ -6,14 +6,15 @@
     "type": "project",
     "require": {
         "php": ">=7.0",
-        "laravel/framework": "5.3.*",
+        "laravel/framework": "5.4.*",
         "rych/phpass": "2.*",
         "unicodeveloper/laravel-password": "1.0.*",
         "golonka/bbcodeparser": "^2.2",
-        "graham-campbell/markdown": "^6.0",
+        "graham-campbell/markdown": "^7.0",
         "darrylkuhn/dialect": "1.*",
-        "laravel/scout": "^1.0",
-        "algolia/algoliasearch-client-php": "^1.10"
+        "laravel/scout": "^3.0",
+        "algolia/algoliasearch-client-php": "^1.10",
+        "laravel/tinker": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

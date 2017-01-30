@@ -156,6 +156,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -163,7 +165,6 @@ return [
         Unicodeveloper\DumbPassword\DumbPasswordServiceProvider::class,
         Golonka\BBCode\BBCodeParserServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
-        Laravel\Scout\ScoutServiceProvider::class,
 
 
     ],
