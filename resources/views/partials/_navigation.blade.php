@@ -26,8 +26,7 @@
                         <li><a href="{{ route('admin.home') }}">Admin</a></li>
                     @endcan
                 @endif
-                <li><a href="{{ route('tags') }}">Tags</a></li>
-                <li><a href="{{-- route('guide') --}}">Guide</a></li>
+                <li><a href="{{ route('home.search') }}">Search</a></li>
                 @if($user)
                     <li><a href="{{ route('auth.logout') }}">Sign out</a></li>
                 @else
@@ -39,7 +38,7 @@
             <!-- Right Side Of Navbar -->
             <p class="navbar-text navbar-right">
                 <!-- Authentication Links -->
-                @if (Auth::guest())
+                @if(Auth::guest())
                     You are <strong>a guest</strong>
                 @else
                     You are <strong><a href="{{ route('user.show', $user->name) }}">{{ $user->name }}</a></strong> • <a href="{{ route('user.edit') }}">Settings</a>

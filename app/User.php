@@ -82,9 +82,9 @@ class User extends Authenticatable
     public static function boot(){
         parent::boot();
 
-        static::creating(function($user)){
-            $user->email_token = str_random(30);
-        }
+        // static::creating(function($user)) {
+        //     $user->email_token = str_random(30);
+        // }
     }
 
     /**
