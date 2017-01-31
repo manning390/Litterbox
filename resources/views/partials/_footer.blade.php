@@ -1,5 +1,5 @@
 <footer id="footer" class="row">
-    <section>
+    <div class="col-md-4">
         <h4>Navigation</h4>
         <ul class="square pages-list">
             <li><a href="{{ route('home.about') }}">About</a></li>
@@ -11,8 +11,8 @@
             <li><a href="{{-- userguide --}}">User Guide</a></li>
             <li><a href="{{-- staff --}}">Staff</a></li>
         </ul>
-    </section>
-    <section>
+    </div>
+    <div class="col-md-4">
         <h4>Support us</h4>
         <p>If you wish to help the site, you can do so by <strong>donating</strong> using the sidebar widget.</p>
         <h4>Find us elsewhere</h4>
@@ -23,8 +23,8 @@
             |
             <a href="http://steamcommunity.com/groups/Colorless" rel="external nofollow">Steam</a>
         </p>
-    </section>
-    <section>
+    </div>
+    <div class="col-md-4">
         <h4>We rock ❤</h4>
-    </section>
+    </div>
 </footer>

@@ -21,3 +21,8 @@
     </ul>
     <hr>
 @endsection
+
+@section('sidebar')
+    @include('partials._chatfriends')
+    @include('partials._donations')
+@endsection

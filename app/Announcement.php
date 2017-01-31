@@ -19,12 +19,12 @@ class Announcement extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function dismiss(){
-        return $this->users()->detach(Auth::user());
+    public function dismiss(User $user){
+        return $this->detach($user);
     }
 
     public function announce(){
-        return $this->users()->attach();
+        return $this->users()->attach($this);
     }
 
     public function getHeaderAttribute(){

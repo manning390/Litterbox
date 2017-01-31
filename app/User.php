@@ -100,7 +100,7 @@ class User extends Authenticatable
      * User can see many Announcements
      */
     public function announcements(){
-        return $this->belongsToMany(Annoucement::class);
+        return $this->belongsToMany(Announcement::class);
     }
 
     /**
@@ -222,4 +222,5 @@ class User extends Authenticatable
     public function getAvatarAttribute(){
         return self::$avatarPath . ($this->avatar ?? $this->defaultAvatar);
     }
+
 }

@@ -22,9 +22,17 @@
     </style>
 </head>
 <body id="app-layout">
-    @include('partials._navigation', [$user])
     <div class="container">
-        @yield('content')
+        @include('partials._navigation')
+        @include('partials._announcements')
+        <div class="row">
+            <div class="col-md-8">
+                @yield('content')
+            </div>
+            <div class="col-md-4">
+                @yield('sidebar')
+            </div>
+        </div>
         @include('partials._footer')
     </div>
 

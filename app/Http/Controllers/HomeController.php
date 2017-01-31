@@ -40,7 +40,7 @@ class HomeController extends Controller
     }
 
     public function dismiss(Announcement $announcement){
-        $announcement->dismiss();
+        $announcement->dismiss(Auth::user());
         return response()->json();
     }
 
