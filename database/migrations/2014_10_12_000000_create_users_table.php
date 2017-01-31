@@ -17,9 +17,9 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('points');
-            $table->json('options');
-            $table->text('profile');
+            $table->integer('points')->default(0);
+            $table->json('options')->nullable();
+            $table->text('profile')->default('');
             $table->timestamp('login_at')->nullable();
             $table->rememberToken();
             $table->boolean('verified')->default(false);

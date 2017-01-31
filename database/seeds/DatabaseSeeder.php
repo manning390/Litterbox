@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
         if (App::environment() === 'production') exit();
 
         // Disable foreign key check for this connection before running seeders
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        if(env('DB_CONNECTION') === 'mysql')
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        else if(env('DB_CONNECTION') === 'sqlite')
+            DB::statement('PRAGMA foreign_keys = OFF');
 
         // Dev seeders
         $this->call(UsersSeeder::class);
@@ -29,6 +32,9 @@ class DatabaseSeeder extends Seeder
             $this->call(UserArchiveTableSeeder::class);
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        if(env('DB_CONNECTION') === 'mysql')
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        else if(env('DB_CONNECTION') === 'sqlite')
+            DB::statement('PRAGMA foreign_keys = ON');
     }
 }
