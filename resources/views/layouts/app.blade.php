@@ -27,7 +27,9 @@
         @include('partials._announcements')
         <div class="row">
             <div class="col-md-8">
-                @yield('content')
+                <div class="cl-well">
+                    @yield('content')
+                </div>
             </div>
             <div class="col-md-4">
                 @yield('sidebar')
@@ -37,6 +39,6 @@
     </div>
 
     <!-- JavaScripts -->
-    {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

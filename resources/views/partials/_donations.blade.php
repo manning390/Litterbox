@@ -1,12 +1,12 @@
 @inject('donations', 'App\Services\DonationsService')
 
-<div id="chatfriends" class="panel panel-default">
+<div id="chatfriends" class="panel cl-panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Donations</h3>
     </div>
     <div class="panel-body">
         <div class="progress">
-            <div class="progress-bar"
+            <div class="progress-bar progress-bar-danger"
                 role="progressbar"
                 aria-valuenow="{{ $donations->percent() }}"
                 aria-valuemin="0"
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <a href="#" class="btn btn-primary btn-block">Donate with PayPal</a>
-        <a href="#" class="btn btn-primary btn-block">Donate with Patreon</a>
+        <a href="#" class="btn btn-danger btn-block">Donate with PayPal</a>
+        <a href="#" class="btn btn-danger btn-block">Donate with Patreon</a>
     </div>
 </div>
