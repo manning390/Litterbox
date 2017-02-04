@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AclSeeder::class);
         $this->call(BadgesSeeder::class);
         $this->call(ThreadSeeder::class);
+        $this->call(FlavorSeeder::class);
 
         // Archive Seeders
         if(App::environment() === 'migration'){

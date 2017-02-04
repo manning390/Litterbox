@@ -20,8 +20,9 @@ class HomeController extends Controller
     {
         $bumped = Thread::nsfwFilter()->bumped()->paginate();
         $new = Thread::nsfwFilter()->orderBy('created_at')->paginate();
+        $pinned = Thread::pinned()->orderBy('created_at');
 
-        return view('home', compact('bumped', 'new'));
+        return view('home', compact('bumped', 'new', 'pinned'));
     }
 
     public function tags()

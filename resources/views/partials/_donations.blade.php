@@ -1,6 +1,6 @@
 @inject('donations', 'App\Services\DonationsService')
 
-<div id="chatfriends" class="panel cl-panel-default">
+<div id="chatfriends" class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Donations</h3>
     </div>

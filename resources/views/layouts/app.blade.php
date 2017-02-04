@@ -27,9 +27,7 @@
         @include('partials._announcements')
         <div class="row">
             <div class="col-md-8">
-                <div class="cl-well">
-                    @yield('content')
-                </div>
+                @yield('content')
             </div>
             <div class="col-md-4">
                 @yield('sidebar')

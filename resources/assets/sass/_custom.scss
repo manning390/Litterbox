@@ -1,25 +1,33 @@
 body {
+    padding-top: 70px;
     font-family: $font-family-sans-serif;
     background: $body-bg url('/img/bg_noise.png');
     color: $text-color;
 }
 
-.cl-panel-default {
-    @include panel-variant(#000, $cl-panel-default-text, $cl-panel-default-heading-bg, $gray-dark);
+.panel-default {
+    @include panel-variant(#000, $panel-default-text, $panel-default-heading-bg, $gray-dark);
 
-    background-color: $cl-panel-bg;
+    background-color: $panel-bg;
 }
 
-.cl-well {
+.well {
     @extend .well;
 
     background-color: #1a1a1a;
-    background-image: url('/img/triangles.png');
     box-shadow: inset 0 1px 0 #2d2d2d;
     text-shadow: #000 0 0 0;
 }
 
-.cl-nav-pills {
+.tri-bg{
+    background-image: url('/img/triangles.png');
+}
+
+.metal-bg {
+    background-image: url('/img/metal_brush.png');
+}
+
+.nav-pills {
     @extend .nav-pills;
     &::after{
         content: '';
@@ -43,23 +51,23 @@ body {
             &:focus {
                 border-bottom-style: solid;
                 border-bottom-width: 4px;
-                border-bottom-color: $cl-orange-light;
+                border-bottom-color: $brand-danger-light;
             }
         }
 
         &.active > a {
             border-bottom-style: solid;
             border-bottom-width: 4px;
-            border-bottom-color: $cl-orange;
+            border-bottom-color: $brand-danger;
             &:hover,
             &:focus {
-                border-bottom-color: $cl-orange-light;
+                border-bottom-color: $brand-danger-light;
             }
         }
     }
 }
 
-.cl-thread-well {
+.thread-well {
     @extend .well;
     @extend .well-sm;
     @include clearfix;
@@ -70,3 +78,19 @@ body {
 .uppercase {
     text-transform: uppercase;
 }
+
+.btn {
+    @extend .metal-bg;
+}
+
+.well-depth {
+    border: 1px solid black;
+    border-radius: 0;
+
+}
+
+.well-depth-light {
+    @extend .well-depth;
+    border-color: $gray-lighter;
+}
+
