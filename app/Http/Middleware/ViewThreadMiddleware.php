@@ -18,7 +18,7 @@ class ViewThreadMiddleware
     public function handle($request, Closure $next)
     {
         $viewedThreads = collect($request->session()->get('thread.views'));
-        $thread = $request->route()->getParameter('thread');
+        $thread = $request->route()->parameters['thread'];
         if(!$viewedThreads->contains($thread->id)){
             $thread->increment('views');
             $request->session()->push('thread.views', $thread->id);

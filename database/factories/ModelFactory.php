@@ -44,7 +44,7 @@ $factory->define(App\Flag::class, function (Faker\Generator $faker) {
         'status' => array_rand(App\Enums\FlagStatusType::getKeysInverse()),
         'body' => $faker->sentence(),
     ];
-})
+});
 
 $factory->define(App\Ip::class, function (Faker\Generator $faker) {
     return [
@@ -68,6 +68,7 @@ $factory->define(App\Poll::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
     return [
+        'user_id' => App\User::all()->random()->id,
         'syntax' => array_rand(App\Enums\SyntaxType::getKeysInverse()),
         'body' => $faker->paragraph(),
     ];
@@ -88,10 +89,11 @@ $factory->define(App\Tag::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Thread::class, function (Faker\Generator $faker) {
     return [
+        'user_id' => App\User::all()->random()->id,
         'name' => $faker->sentence(),
         'link' => $faker->url(),
         'nsfw' => $faker->boolean(),
-        'views' => mt_rand(0, 100),
+        'views' => rand(0, 100),
     ];
 });
 

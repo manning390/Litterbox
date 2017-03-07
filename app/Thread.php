@@ -223,7 +223,7 @@ class Thread extends Model
      * @return int
      */
     public function getLikesAttribute(){
-        return DB::table($likes_table)->where('thread_id', $this->id)->count();
+        return DB::table(self::$likes_table)->where('thread_id', $this->id)->count();
     }
 
     /**
@@ -262,5 +262,9 @@ class Thread extends Model
         $posts = $this->posts()->count();
         $views = $this->views;
         return (log($views, self::$viewLogDecay) * 4 + (($posts * $score) / 5));
+    }
+
+    public function getBumpAttribute(){
+        return $this->posts->last();
     }
 }
