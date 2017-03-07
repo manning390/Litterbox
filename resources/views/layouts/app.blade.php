@@ -10,6 +10,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    @yield('styles')
 
     <style>
         body {

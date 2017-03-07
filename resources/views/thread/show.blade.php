@@ -5,16 +5,16 @@
     @foreach($posts as $post)
         <article>
             <div class="post-author">
-                <a href="{{ route('user.profile', $post->user) }}">
-                    <img class="img-rounded thumbnail img-responsive" src="//placehold.it/50" alt="{{ $post->user->name }} avatar"/>
+                <a href="{{ route('user.show', $post->user->name) }}">
+                    <img class="img-rounded img-responsive" src="//placehold.it/50" alt="{{ $post->user->name }} avatar"/>
                 </a>
             </div>
             <div class="post-links">
-                <a href="{{ $post->permalink }}">#{{ $this->id }}</a>
-                &mdot;
+                <a href="{{ $post->permalink }}">#{{ $post->id }}</a>
+                &bull;
                 <a href="#" data-toggle="tooltip" title="{{ $post->created_at }}" data-placement="top">{{ $post->created_at->diffForHumans() }}</a>
-                &mdot;
-                <a href="{{ route('user.profile', $post->user) }}">{{ $post->user->name }}</a> said:
+                &bull;
+                <a href="{{ route('user.show', $post->user->name) }}">{{ $post->user->name }}</a> said:
             </div>
             {!! $post->html !!}
             @if($post->has('children'))

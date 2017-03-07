@@ -104,6 +104,13 @@ class User extends Authenticatable
     }
 
     /**
+     * User can have many Messages
+     */
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
+
+    /**
      * User creates many Threads
      */
     public function threads(){

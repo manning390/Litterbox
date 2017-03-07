@@ -14,7 +14,8 @@
         "darrylkuhn/dialect": "1.*",
         "laravel/scout": "^3.0",
         "algolia/algoliasearch-client-php": "^1.10",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "pusher/pusher-php-server": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -35,6 +35,13 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
+// Chat Controllers
+Route::group(['prefix'=>'chat'], function(){
+    Route::get('/', 'ChatController@index');
+    Route::get('messages', 'ChatController@fetchMessages');
+    Route::post('messages', 'ChatController@sendMessage');
+});
+
 // Forum Controllers
 Route::resource('thread', 'ThreadController');
 Route::get('thread/{thread}/like', 'ThreadController@like')->name('thread.like');
